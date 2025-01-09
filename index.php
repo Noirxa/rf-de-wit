@@ -1,5 +1,5 @@
 <?php
-//require_once 'database/connection.php';
+require_once 'includes/connection.php';
 
 $host = '127.0.0.1';
 $username = 'root';
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     // Server-side validatie
     $errors = [];
     if ($type_appointments_id === null) {
-        $errors['type_of_appointments_id'] = 'You must select a valid actor';
+        $errors['type_appointments_id'] = 'You must select a valid actor';
     }
     if ($vehicle_id === '') {
         $errors['vehicle_id'] = 'vehicle must be filled';
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
         // Invoegen in de database
         $query = "
             INSERT INTO rfdw (`type_appointments_id`, vehicle_id, date, name,email, telephone)
-            VALUES ('$type_appointments_id, '$vehicle_id', $date, '$name', 'email', 'telephone')
+            VALUES ('$type_appointments_id, '$vehicle_id', $date, '$name', '$email','$telephone')
         ";
         $result = mysqli_query($db, $query);
 
@@ -173,44 +173,47 @@ if (isset($_POST['submit'])) {
 <!--</section>-->
 <section class=" section">
     <div class="field container is-one-third">
-        <label class="label">Wat wilt u reserveren?</label>
+        <label class="label" for="type_appointments_id" >Wat wilt u reserveren?</label>
         <div class="control container">
             <div class="select ">
-                <select>
-                    <option>Select dropdown</option>
-                    <option>APK keuring</option>
-                    <option>Ruitschade</option>
-                    <option>Airco onderhoud</option>
-                    <option>Reperatie</option>
+                <select name="type_appointments_id" id="type_appointments_id">
 
+                    <option>Select dropdown</option>
+                    <option value="2" <?= htmlentities(isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '') ?>> APK keuring </option>
+                    <option value="2" <?= htmlentities(isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '') ?>> Ruitschade </option>
+                    <option value="2" <?= htmlentities(isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '') ?>> Airco onderhoud </option>
+                    <option value="2" <?= htmlentities(isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '') ?>> Reparatie </option>
 
                 </select>
 
             </div>
-
+            <p class="help is-danger"><?= $errors['type_appointments_id'] ?? '' ?></p>
         </div>
-        <br>
 
-        <div class="field container">
-            <label class="label">Welke type voertuig?</label>
+            </div>
 
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="question">
-                    Auto
-                </label>
-
-                <label class="radio">
-                    <input type="radio" name="question">
-                    Motor
-                </label>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label" for="vehicle_id">Welke type voertuig?</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <select name="vehicle_id" id="actor_id">
+                        <option value="">Selecteer</option>
+                        <option value="2" <?= htmlentities(isset($vehicle_id) && $vehicle_id == 2 ? 'selected' : '') ?>> Auto</option>
+                        <option value="3" <?= htmlentities(isset($vehicle_id) && $vehicle_id == 3 ? 'selected' : '' )?>>Motor</option>
+                    </select>
+                </div>
+                <p class="help is-danger"><?= $errors['vehicle_id'] ?? '' ?></p>
             </div>
         </div>
-
-
-
-
     </div>
+        <br>
+
+
+
+
     <div class="field container is-one-third">
         <label class="label">Op welke datum?</label>
         <div class="control">
@@ -251,16 +254,23 @@ if (isset($_POST['submit'])) {
     </div>
 
     <br>
+<!--    Opslaan knop -->-->
+<!--    <div class="field is-horizontal">-->
+<!--        <div class="field-label is-normal"></div>-->
+<!--        <div class="field-body">-->
+<!--            <button class="button is-link is-fullwidth" type="submit" name="submit">Save</button>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div class="field is-grouped container">
-        <div class="control">
-            <button class="button is-link">Submit</button>
-        </div>
-        <div class="control">
-            <button class="button is-link is-light">Cancel</button>
+    <  <!-- Opslaan knop -->
+    <div class="field is-horizontal">
+        <div class="field-label is-normal"></div>
+        <div class="field-body">
+            <button class="button is-link is-fullwidth" type="submit" name="submit">Save</button>
         </div>
     </div>
-</section>
+
+    <a class="button mt-4" href="loll.php">&laquo; Go back to the list</a>
 
 </body>
 </html>
