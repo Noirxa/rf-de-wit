@@ -8,7 +8,7 @@ $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: '.mysqli_connect_error());
 
 $query = "SELECT * FROM reservation
-LEFT JOIN type_appointments
+LEFT JOIN type_appointments 
 ON reservation.type_appointments_id = type_appointments.id";
 
 $result = mysqli_query($db, $query)
@@ -21,8 +21,6 @@ while($row = mysqli_fetch_assoc($result))
 {
     $reservations[] = $row;
 }
-
-
 
 mysqli_close($db);
 ?>
@@ -57,7 +55,7 @@ mysqli_close($db);
         </thead>
         <tfoot>
         <tr>
-            <td colspan="6"> </td>
+            <td colspan="6"> R.F. De Wit Auto's © </td>
         </tr>
         </tfoot>
         <tbody>
