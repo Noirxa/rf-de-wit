@@ -219,7 +219,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
-
+        <br>
     <div class="field container is-one-third">
         <h1> <strong> Gegevens </strong</h1>
         <label class="label">Naam</label>
@@ -229,7 +229,6 @@ if (isset($_POST['submit'])) {
         <p class="help is-danger"><?= $errors['name'] ?? '' ?></p>
                  </div>
         </div>
-    </div>
 
 
     <div class="field container is-one-third">
@@ -250,8 +249,7 @@ if (isset($_POST['submit'])) {
         </div>
         <p class="help is-danger"><?= $errors['telephone'] ?? '' ?></p>
     </div>
-        </div>
-    </div>
+
 
 
     <br>
@@ -276,7 +274,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
-    <a class="button mt-4" href="loll.php">&laquo; Go back to the list</a>
+    <a class="button mt-4" href="index.php">&laquo; Go back to the list</a>
 
 </body>
 </html>
