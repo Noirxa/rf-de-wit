@@ -1,4 +1,5 @@
 <?php
+
 $host = '127.0.0.1';
 $username = 'root';
 $password = '';
@@ -56,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Als er geen fouten zijn, voeg toe aan database
     if (empty($errors)) {
         $query = "UPDATE reservation
-        SET `type_appointment`='$type_appointments_id',`vechile_id`='$vehicle_id',`date`=$date,`name`=$name,`email`='$email',`telephone`='$telephone'     
+        SET `type_appointments_id`='$type_appointments_id',`vehicle_id`='$vehicle_id',`date`=$date,`name`=$name,`email`='$email',`telephone`='$telephone'     
         WHERE id = $id";
 
 
