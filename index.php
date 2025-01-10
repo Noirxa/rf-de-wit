@@ -76,7 +76,7 @@ mysqli_close($db);
                 <th> <?php echo $res ['date'] ?> </th>
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
-                <th> <?php echo $res['telephone'] ?> </th>
+                <th> <?php echo $res ['telephone'] ?> </th>
 
                 <td> <a href="edit.php?id=<?php $res ['id'] ?>"  </a> Edit </td>
             </tr>
