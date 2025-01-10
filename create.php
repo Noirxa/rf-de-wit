@@ -73,13 +73,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="">
-            <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo">
+            <figure class="image is-150x150px">
+                <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo" />
+            </figure>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </a>
     </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item">
+                Home
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Ocassions
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                        Auto leasen
+                    </a>
+                    <a class="navbar-item">
+                        Auto kopen
+                    </a>
+                    <a class="navbar-item">
+                        Contact
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Meld een probleem
+                    </a>
+                </div>
+            </div>
+
+            <a class="navbar-item">
+                Werkplaats
+            </a>
+            <a class="navbar-item">
+                Reserveren
+            </a>
+            <a class="navbar-item">
+                Contact
+            </a>
+
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>+31 6 421 28724</strong>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </nav>
+
+
+
 
 <section class="section">
     <div class="container">
@@ -155,6 +220,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </section>
 
-<p> yo bradaa</p>
 </body>
 </html>
