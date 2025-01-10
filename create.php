@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($db, $query);
 
         if ($result) {
-            header('Location: index.php');
+            header('Location: create.php');
             exit;
         } else {
             echo "Database Error: " . mysqli_error($db);
