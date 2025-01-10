@@ -25,6 +25,12 @@ while($row = mysqli_fetch_assoc($result))
 mysqli_close($db);
 ?>
 
+<?php
+//DEFINE ('DIR', __DIR__);
+//include __DIR__ . "/create.php";
+//include __DIR__ . "/edit.php";
+//?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,6 +46,8 @@ mysqli_close($db);
     <h1> Reservations </h1>
     <p> Welcome back, [USER]. </p>
 </section>
+
+<a href="create.php"> Create </a>
 
 <section class="section">
     <table class="table mx-auto">
@@ -68,6 +76,8 @@ mysqli_close($db);
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res['telephone'] ?> </th>
+
+                <td> <a href="edit.php"  </a> Edit </td>
             </tr>
         <?php } ?>
         </tbody>
