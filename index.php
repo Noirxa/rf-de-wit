@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/connection.php';
+//require_once 'includes/connection.php';
 
 $host = '127.0.0.1';
 $username = 'root';
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
     if (empty($errors)) {
         // Invoegen in de database
         $query = "
-            INSERT INTO rfdw (`type_appointments_id`, vehicle_id, date, name,email, telephone)
+            INSERT INTO reservation (`type_appointments_id`, vehicle_id, date, name,email, telephone)
             VALUES ('$type_appointments_id, '$vehicle_id', $date, '$name', '$email','$telephone')
         ";
         $result = mysqli_query($db, $query);
@@ -191,6 +191,7 @@ if (isset($_POST['submit'])) {
         </div>
 
             </div>
+</section>
 
     <div class="field container is-one-third">
         <label class="label" for="type_appointments_id" >Welke type voertuig?</label>
@@ -223,7 +224,7 @@ if (isset($_POST['submit'])) {
         <h1> <strong> Gegevens </strong</h1>
         <label class="label">Naam</label>
         <div class="control">
-            <input class="input" id="rating" type="text" name="rating"  placeholder= "Layla" value="<?=htmlentities( $name ?? '') ?>"/>
+            <input class="input" id="name" type="text" name="name"  placeholder= "Layla" value="<?=htmlentities( $name ?? '') ?>"/>
         </div>
         <p class="help is-danger"><?= $errors['name'] ?? '' ?></p>
                  </div>
@@ -234,13 +235,21 @@ if (isset($_POST['submit'])) {
     <div class="field container is-one-third">
         <label class="label">Email</label>
         <div class="control">
-            <input class="input" type="email" placeholder="123@gmail.com">
+            <input class="input" id="email" type="email" name="email"  placeholder= "email" value="<?=htmlentities( $email ?? '') ?>"/>
         </div>
+        <p class="help is-danger"><?= $errors['email'] ?? '' ?></p>
     </div>
+<!--</div>-->
+<!--        </div>-->
+<!--    </div>-->
+
     <div class="field container is-one-third">
         <label class="label">Telefoonnummer</label>
         <div class="control">
-            <input class="input" type="number" placeholder="+31 6 123 456 890">
+            <input class="input" id="telephone" type="number" name="telephone"  placeholder= "+31 6 123 456 890" value="<?=htmlentities( $telephone ?? '') ?>"/>
+        </div>
+        <p class="help is-danger"><?= $errors['telephone'] ?? '' ?></p>
+    </div>
         </div>
     </div>
 
@@ -257,15 +266,9 @@ if (isset($_POST['submit'])) {
     </div>
 
     <br>
-<!--    Opslaan knop -->-->
-<!--    <div class="field is-horizontal">-->
-<!--        <div class="field-label is-normal"></div>-->
-<!--        <div class="field-body">-->
-<!--            <button class="button is-link is-fullwidth" type="submit" name="submit">Save</button>-->
-<!--        </div>-->
-<!--    </div>-->
 
-    <  <!-- Opslaan knop -->
+
+<!-- Opslaan knop -->
     <div class="field is-horizontal">
         <div class="field-label is-normal"></div>
         <div class="field-body">
