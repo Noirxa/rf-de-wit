@@ -1,12 +1,29 @@
 <?php
+$host = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'rfdw';
+
+// Maak verbinding met de database
+$db = mysqli_connect($host, $username, $password, $database)
+or die('Error: ' . mysqli_connect_error());
+
+
+$id = mysqli_escape_string($db, $_GET['id']);
+$query = "SELECT * FROM reservation WHERE id = $id";
+
+$result = mysqli_query($db, $query)
+or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+
+
 // Initialiseer variabelen
-$errors = [];
-$type_appointments_id = '';
-$vehicle_id = '';
-$date = '';
-$name = '';
-$email = '';
-$telephone = '';
+$update = mysqli_fetch_assoc($result);
+$type_appointments_id = $update ['type_appointments_id'];
+$vehicle_id = $update ['vehicles_id'];
+$date = $update['date'];
+$name = $update['name'];
+$email = $update ['email'];
+$telephone = $update ['telephone'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Haal gegevens op en valideer invoer
@@ -36,14 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($telephone)) {
         $errors['telephone'] = 'Telefoonnummer moet worden ingevuld.';
     }
-
-// Als er geen fouten zijn, voeg toe aan database
+    // Als er geen fouten zijn, voeg toe aan database
     if (empty($errors)) {
-
-        $query = "UPDATE `reservation`
-        
-     SET `type_appointments_id`, `vehicle_id`, `date`, `name`, `email`, `telephone`
-         WHERE id = $id";
+        $query = "UPDATE reservation
+        SET `type_appointment`='$type_appointments_id',`vechile_id`='$vehicle_id',`date`=$date,`name`=$name,`email`='$email',`telephone`='$telephone'     
+        WHERE id = $id";
 
 
         $result = mysqli_query($db, $query);
