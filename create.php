@@ -270,11 +270,11 @@ if (isset($_POST['submit'])) {
     <div class="field is-horizontal">
         <div class="field-label is-normal"></div>
         <div class="field-body">
-            <button class="button is-link is-fullwidth" type="submit" name="submit">Save</button>
+            <a href="index.php"> <button class="button is-link is-fullwidth" type="submit" name="submit">Save</button></a>
+
         </div>
     </div>
 
-    <a class="button mt-4" href="index.php">&laquo; Go back to the list</a>
 
 </body>
 </html>
