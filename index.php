@@ -1,27 +1,25 @@
 <?php
-$host       = '127.0.0.1';
-$username   = 'root';
-$password   = '';
-$database   = 'rfdw';
+$host = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'rfdw';
 
 $db = mysqli_connect($host, $username, $password, $database)
-or die('Error: '.mysqli_connect_error());
+or die('Error: ' . mysqli_connect_error());
 
 $query = "SELECT * FROM reservation
 LEFT JOIN type_appointments
 ON reservation.type_appointments_id = type_appointments.id";
 
 $result = mysqli_query($db, $query)
-or die('Error '.mysqli_error($db).' with query '.$query);
+or die('Error ' . mysqli_error($db) . ' with query ' . $query);
 
 $reservations = [];
 
 
-while($row = mysqli_fetch_assoc($result))
-{
+while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
-
 
 
 mysqli_close($db);
@@ -47,17 +45,17 @@ mysqli_close($db);
     <table class="table mx-auto">
         <thead>
         <tr>
-            <th> Case ID </th>
-            <th> Type of Appointment </th>
-            <th> Vehicle in Question </th>
-            <th> Date of Appointment </th>
-            <th> Name Client </th>
-            <th> Email </th>
-            <th> Phone Number </th>
+            <th> Case ID</th>
+            <th> Type of Appointment</th>
+            <th> Vehicle in Question</th>
+            <th> Date of Appointment</th>
+            <th> Name Client</th>
+            <th> Email</th>
+            <th> Phone Number</th>
         </thead>
         <tfoot>
         <tr>
-            <td colspan="6"> </td>
+            <td colspan="6"></td>
         </tr>
         </tfoot>
         <tbody>
@@ -70,6 +68,8 @@ mysqli_close($db);
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res['telephone'] ?> </th>
+                <td><a href="edit.php?id=<?= $res['id'] ?>">Edit</a></td>
+                <td><a href="delete.php?id=<?= $res['id'] ?>">Delete</a></td>
             </tr>
         <?php } ?>
         </tbody>
