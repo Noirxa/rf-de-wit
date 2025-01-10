@@ -25,12 +25,6 @@ while($row = mysqli_fetch_assoc($result))
 mysqli_close($db);
 ?>
 
-<?php
-//DEFINE ('DIR', __DIR__);
-//include __DIR__ . "/create.php";
-//include __DIR__ . "/edit.php";
-//TEST CODE DO NOT TOUCH
-//?>
 
 <!doctype html>
 <html lang="en">
@@ -78,7 +72,7 @@ mysqli_close($db);
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res ['telephone'] ?> </th>
 
-                <td> <a href="edit.php?id=<?php $res ['id'] ?>"  </a> Edit </td>
+                <td> <a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a> </td>
             </tr>
         <?php } ?>
         </tbody>
