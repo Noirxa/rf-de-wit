@@ -12,7 +12,7 @@ or die('Error: ' . mysqli_connect_error());
 //require_once 'includes/security_check.php';
 
 if (isset($_POST['submit'])) {
-    $type_appointments_id =  mysqli_escape_string ($db,isset($_POST['actor_id']) && is_numeric($_POST['actor_id']) ? $_POST['actor_id'] : null);
+    $type_appointments_id =  mysqli_escape_string ($db,isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null);
     $vehicle_id =  mysqli_escape_string ($db,isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null);
     $date = mysqli_escape_string ($db, $_POST['date'] ?? '');
     $name = mysqli_escape_string ($db, $_POST['name'] ?? '');
@@ -192,23 +192,20 @@ if (isset($_POST['submit'])) {
 
             </div>
 
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label" for="vehicle_id">Welke type voertuig?</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <div class="control">
-                    <select name="vehicle_id" id="actor_id">
-                        <option value="">Selecteer</option>
-                        <option value="2" <?= htmlentities(isset($vehicle_id) && $vehicle_id == 2 ? 'selected' : '') ?>> Auto</option>
-                        <option value="3" <?= htmlentities(isset($vehicle_id) && $vehicle_id == 3 ? 'selected' : '' )?>>Motor</option>
-                    </select>
-                </div>
-                <p class="help is-danger"><?= $errors['vehicle_id'] ?? '' ?></p>
+    <div class="field container is-one-third">
+        <label class="label" for="type_appointments_id" >Welke type voertuig?</label>
+        <div class="control container">
+            <div class="select ">
+                <select name="type_appointments_id" id="type_appointments_id">
+
+                    <option>Select dropdown</option>
+                    <option value="2" <?= htmlentities(isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '') ?>> Auto </option>
+                    <option value="2" <?= htmlentities(isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '') ?>> Motor </option>
+                </select>
+
             </div>
+            <p class="help is-danger"><?= $errors['type_appointments_id'] ?? '' ?></p>
         </div>
-    </div>
         <br>
 
 
@@ -221,13 +218,19 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
+
     <div class="field container is-one-third">
         <h1> <strong> Gegevens </strong</h1>
         <label class="label">Naam</label>
         <div class="control">
-            <input class="input" type="text" placeholder="Layla">
+            <input class="input" id="rating" type="text" name="rating"  placeholder= "Layla" value="<?=htmlentities( $name ?? '') ?>"/>
+        </div>
+        <p class="help is-danger"><?= $errors['name'] ?? '' ?></p>
+                 </div>
         </div>
     </div>
+
+
     <div class="field container is-one-third">
         <label class="label">Email</label>
         <div class="control">
