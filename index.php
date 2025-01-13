@@ -68,10 +68,14 @@ mysqli_close($db);
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res['telephone'] ?> </th>
+                <td><a href="edit.php?id= <?= $res['id'] ?>">Edit</a></td>
+
+
             </tr>
         <?php } ?>
         </tbody>
     </table>
+
 </section>
 
 </body>
