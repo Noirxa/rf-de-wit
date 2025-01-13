@@ -25,9 +25,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     // Haal bestaande gegevens op
     $query = "SELECT * FROM reservation WHERE id = $id";
-    $result = mysqli_query($db, $query);
-    if ($result) {
-        $reservation = mysqli_fetch_assoc($result);
+    $selectResult = mysqli_query($db, $query);
+    if ($selectResult) {
+        $reservation = mysqli_fetch_assoc($selectResult);
         if ($reservation) {
             $type_appointments_id = $reservation['type_appointments_id'];
             $vehicle_id = $reservation['vehicle_id'];
@@ -46,6 +46,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     // Haal gegevens op en valideer invoer
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
@@ -76,13 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Als er geen fouten zijn, werk de record bij in de database
     if (empty($errors)) {
+
         $query = "
             UPDATE reservation 
-            SET type_appointments_id = '$type_appointments_id', vehicle_id = '$vehicle_id', date = '$date', name = '$name', email = '$email', telephone = '$telephone'
+            SET type_appointments_id = '$type_appointments_id', vehicle_id = '$vehicle_id', date_of = '$date', name = '$name', email = '$email', telephone = '$telephone'
             WHERE id = $id
         ";
 
-        if ($result) {
+        $updateResult = mysqli_query($db, $query);
+        if ($updateResult) {
             header('Location: index.php');
             exit;
         } else {
@@ -147,7 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="field">
                 <label class="label" for="date">Op welke datum?</label>
                 <div class="control">
-                    <input class="input" type="datetime-local" name="date" id="date" value="<?= htmlentities($date) ?>">
+                    <input class="input" type="datetime-local" name="date_of" id="date"
+                           value="<?= htmlentities($date) ?>">
                 </div>
                 <p class="help is-danger"><?= $errors['date'] ?? '' ?></p>
             </div>
@@ -181,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-link" type="submit">Opslaan</button>
+                    <button class="button is-link" type="submit" name="submit">Opslaan</button>
                 </div>
             </div>
         </form>
