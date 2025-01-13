@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!---->
 <!--<footer style="background-color: #f4f4f4; padding: 20px;">-->
 <!--    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">-->
-<!--         Contactsectie -->-->
+<!--         Contactsectie -->
 <!--        <div style="flex: 1; min-width: 250px;">-->
 <!--            <h2>Contact</h2>-->
 <!--            <p>R.F. de Wit Auto's<br>Buitenweg 12<br>2931AC Krimpen aan de Lek</p>-->
@@ -245,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--            <p><strong>E:</strong> <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a></p>-->
 <!--        </div>-->
 <!---->
-<!--         Openingstijdensectie -->-->
+<!--         Openingstijdensectie -->
 <!--        <div style="flex: 1; min-width: 250px;">-->
 <!--            <h2>Openingstijden</h2>-->
 <!--            <ul style="list-style: none; padding: 0;">-->
@@ -259,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--            </ul>-->
 <!--        </div>-->
 <!---->
-<!--         Socials en beoordeling -->-->
+<!--         Socials en beoordeling -->
 <!--        <div style="flex: 1; min-width: 250px;">-->
 <!--            <h2>Onze socials</h2>-->
 <!--            <p>-->
