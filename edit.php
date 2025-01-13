@@ -11,7 +11,7 @@ or die('Error: ' . mysqli_connect_error());
 
 
 $id = mysqli_escape_string($db, $_GET['id']);
-$query = "SELECT * FROM reservation WHERE id = $id";
+$query = "SELECT * FROM reservation WHERE id = '$id'";
 
 $result = mysqli_query($db, $query)
 or die('Error ' . mysqli_error($db) . ' with query ' . $query);
@@ -20,7 +20,7 @@ or die('Error ' . mysqli_error($db) . ' with query ' . $query);
 // Initialiseer variabelen
 $update = mysqli_fetch_assoc($result);
 $type_appointments_id = $update ['type_appointments_id'];
-$vehicle_id = $update ['vehicles_id'];
+$vehicle_id = $update ['vehicle_id'];
 $date = $update['date'];
 $name = $update['name'];
 $email = $update ['email'];
