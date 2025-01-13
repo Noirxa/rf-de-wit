@@ -25,6 +25,7 @@ while($row = mysqli_fetch_assoc($result))
 mysqli_close($db);
 ?>
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,6 +41,8 @@ mysqli_close($db);
     <h1> Reservations </h1>
     <p> Welcome back, [USER]. </p>
 </section>
+
+<a href="create.php"> Create </a>
 
 <section class="section">
     <table class="table mx-auto">
@@ -67,7 +70,9 @@ mysqli_close($db);
                 <th> <?php echo $res ['date'] ?> </th>
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
-                <th> <?php echo $res['telephone'] ?> </th>
+                <th> <?php echo $res ['telephone'] ?> </th>
+
+                <td> <a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a> </td>
             </tr>
         <?php } ?>
         </tbody>

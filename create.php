@@ -216,9 +216,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button class="button is-link" type="submit">Opslaan</button>
                 </div>
             </div>
-        </form>
-    </div>
-</section>
-
 </body>
 </html>
