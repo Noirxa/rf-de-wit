@@ -11,20 +11,20 @@ or die('Error: ' . mysqli_connect_error());
 
 
 $id = mysqli_escape_string($db, $_GET['id']);
-$query = "SELECT * FROM reservation WHERE id = '$id'";
+$query = "SELECT * FROM reservation WHERE id = 1";
 
 $result = mysqli_query($db, $query)
 or die('Error ' . mysqli_error($db) . ' with query ' . $query);
 
 
 // Initialiseer variabelen
-$update = mysqli_fetch_assoc($result);
-$type_appointments_id = $update ['type_appointments_id'];
-$vehicle_id = $update ['vehicle_id'];
-$date = $update['date'];
-$name = $update['name'];
-$email = $update ['email'];
-$telephone = $update ['telephone'];
+$res = mysqli_fetch_assoc($result);
+$type_appointments_id = $res ['type_appointments_id'];
+$vehicle_id = $res ['vehicle_id'];
+$date = $res['date'];
+$name = $res['name'];
+$email = $res ['email'];
+$telephone = $res ['telephone'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Haal gegevens op en valideer invoer
@@ -57,11 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Als er geen fouten zijn, voeg toe aan database
     if (empty($errors)) {
         $query = "UPDATE reservation
-        SET `type_appointments_id`='$type_appointments_id',`vehicle_id`='$vehicle_id',`date`=$date,`name`=$name,`email`='$email',`telephone`='$telephone'     
+        SET `res`='$type_appointments_id',`vehicle_id`='$vehicle_id',`date`=$date,`name`=$name,`email`='$email',`telephone`='$telephone'     
         WHERE id = $id";
 
-
-        $result = mysqli_query($db, $query);
 
         if ($result) {
             header('Location: index.php');
