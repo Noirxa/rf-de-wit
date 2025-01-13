@@ -216,5 +216,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button class="button is-link" type="submit">Opslaan</button>
                 </div>
             </div>
+        </form>
+    </div>
+</section>
+
+<!--<footer class="footer">-->
+<!--    <div class="content has-text-centered">-->
+<!--        <p>-->
+<!--            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.-->
+<!--            The source code is licensed-->
+<!--            <a href="https://opensource.org/license/mit">MIT</a>. The-->
+<!--            website content is licensed-->
+<!--            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0//"-->
+<!--            >CC BY NC SA 4.0</a-->
+<!--            >.-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</footer>-->
+<!---->
+<!--<footer style="background-color: #f4f4f4; padding: 20px;">-->
+<!--    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">-->
+<!--         Contactsectie -->-->
+<!--        <div style="flex: 1; min-width: 250px;">-->
+<!--            <h2>Contact</h2>-->
+<!--            <p>R.F. de Wit Auto's<br>Buitenweg 12<br>2931AC Krimpen aan de Lek</p>-->
+<!--            <p><img src="rdw-logo.png" alt="RDW Erkend" style="height: 40px; margin-top: 10px;"></p>-->
+<!--            <p><strong>M:</strong> 0642128724</p>-->
+<!--            <p><strong>E:</strong> <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a></p>-->
+<!--        </div>-->
+<!---->
+<!--         Openingstijdensectie -->-->
+<!--        <div style="flex: 1; min-width: 250px;">-->
+<!--            <h2>Openingstijden</h2>-->
+<!--            <ul style="list-style: none; padding: 0;">-->
+<!--                <li>Maandag: 8:30 - 17:30</li>-->
+<!--                <li>Dinsdag: 8:30 - 17:30</li>-->
+<!--                <li>Woensdag: 8:30 - 17:30</li>-->
+<!--                <li>Donderdag: 8:30 - 17:30</li>-->
+<!--                <li>Vrijdag: 8:30 - 17:30</li>-->
+<!--                <li>Zaterdag: 10:00 - 15:00</li>-->
+<!--                <li>Zondag: Gesloten</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!---->
+<!--         Socials en beoordeling -->-->
+<!--        <div style="flex: 1; min-width: 250px;">-->
+<!--            <h2>Onze socials</h2>-->
+<!--            <p>-->
+<!--                <a href="#" style="text-decoration: none;">-->
+<!--                    <img src="facebook-icon.png" alt="Facebook" style="height: 30px;">-->
+<!--                </a>-->
+<!--            </p>-->
+<!--            <h2 style="margin-top: 20px;">Klantenvertellen</h2>-->
+<!--            <p style="display: flex; align-items: center;">-->
+<!--                <img src="klantenvertellen-logo.png" alt="Klantenvertellen" style="height: 50px; margin-right: 10px;">-->
+<!--                <span>63 beoordelingen</span>-->
+<!--            </p>-->
+<!--            <a href="#" style="display: inline-block; padding: 10px 20px; background-color: orange; color: white; text-decoration: none; border-radius: 5px;">Beoordeel ons</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+
 </body>
 </html>
