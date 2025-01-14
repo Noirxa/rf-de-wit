@@ -57,18 +57,24 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RF de Wit Auto's Index</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
 </head>
 <body>
 
+
 <section class="head">
-    <h1> Reservations </h1>
+    <h1 class="is-size-2 has-text-white has-text-weight-bold"> Reservations </h1>
     <p> Welcome back, [USER]. </p>
+
+    <a href="create.php" class="button"> Create An Appointment </a>
+    <a href="register.php" class="button"> Register New Mechanic </a>
 </section>
 
-<a href="create.php"> Create </a>
-
 <section class="section">
-    <table class="table mx-auto">
+    <table class="table is-bordered mx-auto">
         <thead>
         <tr>
             <th> Case ID </th>
@@ -83,7 +89,6 @@ mysqli_close($db);
         </thead>
         <tfoot>
         <tr>
-            <td colspan="6"> R.F. De Wit Auto's © </td>
         </tr>
         </tfoot>
         <tbody>
@@ -100,13 +105,12 @@ mysqli_close($db);
                 <th> <?php echo $res ['telephone'] ?> </th>
 
                 <td> <a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a> </td>
-                <td> <a href="login.php"> login </a> </td>
-                <td> <a href="register.php"> register </a> </td>
 
             </tr>
         <?php } ?>
         </tbody>
     </table>
+    <p> R.F. De Wit Auto's © </p>
 </section>
 
 </body>
