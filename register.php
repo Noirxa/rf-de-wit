@@ -10,6 +10,7 @@ if(isset($_POST['submit'])) {
     $lastName=mysqli_escape_string ($db, $_POST['lastName']);
     $email=mysqli_escape_string ($db, $_POST['email']);
     $password=mysqli_escape_string ($db, $_POST['password']);
+    lol
 
 
     // Server-side validation
