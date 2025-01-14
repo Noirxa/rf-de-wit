@@ -92,6 +92,8 @@ mysqli_close($db);
                 <td> <a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a> </td>
                 <td> <a href="login.php"> login </a> </td>
                 <td> <a href="register.php"> register </a> </td>
+                <td> <a href="delete.php"> delete </a> </td>
+
 
             </tr>
         <?php } ?>
