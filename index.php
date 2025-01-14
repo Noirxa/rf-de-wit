@@ -11,8 +11,10 @@ $query = "
 SELECT 
     reservation.id, 
     type_appointments.type AS type_appointments_type, 
-    reservation.vehicle_id, 
+    type_vehicle.type AS type_vehicle_type, 
     reservation.date_of, 
+    reservation.start_time, 
+    reservation.end_time,
     reservation.name, 
     reservation.email, 
     reservation.telephone 
@@ -22,6 +24,10 @@ LEFT JOIN
     type_appointments 
 ON 
     reservation.type_appointments_id = type_appointments.type_appointments_id
+LEFT JOIN  
+    type_vehicle
+ON 
+   reservation.vehicle_id = type_vehicle.vehicle_id
 ";
 
 //$query = "SELECT id, type_appointments_id AS type_appointments.type_appointments.type, vehicle_id, date_of, name, email, telephone FROM reservation
@@ -69,6 +75,8 @@ mysqli_close($db);
             <th> Type of Appointment </th>
             <th> Vehicle in Question </th>
             <th> Date of Appointment </th>
+            <th> Start Time </th>
+            <th> End Time </th>
             <th> Name Client </th>
             <th> Email </th>
             <th> Phone Number </th>
@@ -83,8 +91,10 @@ mysqli_close($db);
             <tr>
                 <th> <?php echo $res ['id'] ?> </th>
                 <th> <?php echo $res ['type_appointments_type'] ?> </th>
-                <th> <?php echo $res ['vehicle_id'] ?> </th>
+                <th> <?php echo $res ['type_vehicle_type'] ?> </th>
                 <th> <?php echo $res ['date_of'] ?> </th>
+                <th> <?php echo $res ['start_time'] ?> </th>
+                <th> <?php echo $res ['end_time'] ?> </th>
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res ['telephone'] ?> </th>
