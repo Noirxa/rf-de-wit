@@ -7,9 +7,26 @@ $database   = 'rfdw';
 $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: '.mysqli_connect_error());
 
-$query = "SELECT * FROM reservation
-LEFT JOIN type_appointments 
-ON reservation.type_appointments_id = type_appointments.id";
+$query = "
+SELECT 
+    reservation.id, 
+    type_appointments.type AS type_appointments_type, 
+    reservation.vehicle_id, 
+    reservation.date_of, 
+    reservation.name, 
+    reservation.email, 
+    reservation.telephone 
+FROM 
+    reservation 
+LEFT JOIN 
+    type_appointments 
+ON 
+    reservation.type_appointments_id = type_appointments.type_appointments_id
+";
+
+//$query = "SELECT id, type_appointments_id AS type_appointments.type_appointments.type, vehicle_id, date_of, name, email, telephone FROM reservation
+//LEFT JOIN type_appointments
+//ON reservation.type_appointments_id = type_appointments.type_appointments_id";
 
 $result = mysqli_query($db, $query)
 or die('Error '.mysqli_error($db).' with query '.$query);
@@ -65,9 +82,9 @@ mysqli_close($db);
         <?php foreach ($reservations as $index => $res) { ?>
             <tr>
                 <th> <?php echo $res ['id'] ?> </th>
-                <th> <?php echo $res ['type_appointments_id'] ?> </th>
+                <th> <?php echo $res ['type_appointments_type'] ?> </th>
                 <th> <?php echo $res ['vehicle_id'] ?> </th>
-                <th> <?php echo $res ['date'] ?> </th>
+                <th> <?php echo $res ['date_of'] ?> </th>
                 <th> <?php echo $res ['name'] ?> </th>
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res ['telephone'] ?> </th>
