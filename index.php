@@ -71,6 +71,7 @@ mysqli_close($db);
 
     <a href="create.php" class="button"> Create An Appointment </a>
     <a href="register.php" class="button"> Register New Mechanic </a>
+    <a href=" " class="button"> Go To Contact Questions </a>
 </section>
 
 <section class="section">
