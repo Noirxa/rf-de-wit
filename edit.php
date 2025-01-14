@@ -19,6 +19,8 @@ $email = '';
 $telephone = '';
 $id = '';  // Nieuwe variabele voor het identificeren van de record die we willen updaten
 
+require_once 'includes/security_check.php';
+
 // Controleer of er een id is meegegeven in de URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];

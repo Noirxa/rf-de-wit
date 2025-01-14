@@ -90,7 +90,7 @@ mysqli_close($db);
                 <th> <?php echo $res ['telephone'] ?> </th>
 
                 <td> <a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a> </td>
-                <td> <a href="edittryaya.php?id=<?php echo $res['id']; ?>"> yoo </a> </td>
+                <td> <a href="login.php"> yoo </a> </td>
 
             </tr>
         <?php } ?>

@@ -9,11 +9,13 @@ $database = 'rfdw';
 $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: ' . mysqli_connect_error());
 
+require_once 'includes/security_check.php';
+
 // Initialiseer variabelen
 $errors = [];
 $type_appointments_id = '';
 $vehicle_id = '';
-$date = '';
+$date_of = '';
 $name = '';
 $email = '';
 $telephone = '';
@@ -22,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Haal gegevens op en valideer invoer
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
-    $date = mysqli_escape_string($db, $_POST['date'] ?? '');
+    $date_of = mysqli_escape_string($db, $_POST['date'] ?? '');
     $name = mysqli_escape_string($db, $_POST['name'] ?? '');
     $email = mysqli_escape_string($db, $_POST['email'] ?? '');
     $telephone = mysqli_escape_string($db, is_numeric($_POST['telephone']) ? $_POST['telephone'] : '');
@@ -34,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($vehicle_id)) {
         $errors['vehicle_id'] = 'Je moet een type voertuig selecteren.';
     }
-    if (empty($date)) {
+    if (empty($date_of)) {
         $errors['date'] = 'Datum moet worden ingevuld.';
     }
     if (empty($name)) {
@@ -50,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Als er geen fouten zijn, voeg toe aan database
     if (empty($errors)) {
         $query = "
-            INSERT INTO reservation (`type_appointments_id`, `vehicle_id`, `date`, `name`, `email`, `telephone`)
-            VALUES ('$type_appointments_id', '$vehicle_id', '$date', '$name', '$email', '$telephone')
+            INSERT INTO reservation (`type_appointments_id`, `vehicle_id`, `date_of`, `name`, `email`, `telephone`)
+            VALUES ('$type_appointments_id', '$vehicle_id', '$date_of', '$name', '$email', '$telephone')
         ";
         $result = mysqli_query($db, $query);
 
@@ -180,11 +182,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="field">
-                <label class="label" for="date">Op welke datum?</label>
+                <label class="label" for="date_of">Op welke datum?</label>
                 <div class="control">
-                    <input class="input" type="datetime-local" name="date" id="date" value="<?= htmlentities($date) ?>">
+                    <input class="input" type="datetime-local" name="date_of" id="date_of" value="<?= htmlentities($date_of) ?>">
                 </div>
-                <p class="help is-danger"><?= $errors['date'] ?? '' ?></p>
+                <p class="help is-danger"><?= $errors['date_of'] ?? '' ?></p>
             </div>
 
             <div class="field">
