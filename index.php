@@ -65,7 +65,7 @@ mysqli_close($db);
 <body>
 
 
-<section class="head">
+<section class="head mx-5">
     <h1 class="is-size-2 has-text-white has-text-weight-bold"> Reservations </h1>
     <p> Welcome back, [USER]. </p>
 
