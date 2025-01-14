@@ -1,5 +1,5 @@
 <?php
-
+// Databaseverbinding instellen
 $host = '127.0.0.1';
 $username = 'root';
 $password = '';
@@ -9,33 +9,55 @@ $database = 'rfdw';
 $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: ' . mysqli_connect_error());
 
-
-$id = mysqli_escape_string($db, $_GET['id']);
-$query = "SELECT * FROM reservation WHERE id = 1";
-
-$result = mysqli_query($db, $query)
-or die('Error ' . mysqli_error($db) . ' with query ' . $query);
-
-
 // Initialiseer variabelen
-$res = mysqli_fetch_assoc($result);
-$type_appointments_id = $res ['type_appointments_id'];
-$vehicle_id = $res ['vehicle_id'];
-$date = $res['date'];
-$name = $res['name'];
-$email = $res ['email'];
-$telephone = $res ['telephone'];
+$errors = [];
+$type_appointments_id = '';
+$vehicle_id = '';
+$date = '';
+$name = '';
+$email = '';
+$telephone = '';
+$id = '';  // Nieuwe variabele voor het identificeren van de record die we willen updaten
+
+require_once 'includes/security_check.php';
+
+// Controleer of er een id is meegegeven in de URL
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = $_GET['id'];
+
+    // Haal bestaande gegevens op
+    $query = "SELECT * FROM reservation WHERE id = $id";
+    $selectResult = mysqli_query($db, $query);
+    if ($selectResult) {
+        $reservation = mysqli_fetch_assoc($selectResult);
+        if ($reservation) {
+            $type_appointments_id = $reservation['type_appointments_id'];
+            $vehicle_id = $reservation['vehicle_id'];
+            $date = $reservation['date_of'];
+            $name = $reservation['name'];
+            $email = $reservation['email'];
+            $telephone = $reservation['telephone'];
+        } else {
+            echo "Reservering niet gevonden.";
+            exit;
+        }
+    } else {
+        echo "Database Error: " . mysqli_error($db);
+        exit;
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-// Haal gegevens op en valideer invoer
+
+    // Haal gegevens op en valideer invoer
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
-    $date = mysqli_escape_string($db, $_POST['date'] ?? '');
+    $date = mysqli_escape_string($db, $_POST['date_of'] ?? '');
     $name = mysqli_escape_string($db, $_POST['name'] ?? '');
     $email = mysqli_escape_string($db, $_POST['email'] ?? '');
     $telephone = mysqli_escape_string($db, is_numeric($_POST['telephone']) ? $_POST['telephone'] : '');
 
-// Validatie van velden
+    // Validatie van velden
     if (empty($type_appointments_id)) {
         $errors['type_appointments_id'] = 'Je moet een geldig type reservering kiezen.';
     }
@@ -43,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['vehicle_id'] = 'Je moet een type voertuig selecteren.';
     }
     if (empty($date)) {
-        $errors['date'] = 'Datum moet worden ingevuld.';
+        $errors['date_of'] = 'Datum moet worden ingevuld.';
     }
     if (empty($name)) {
         $errors['name'] = 'Naam moet worden ingevuld.';
@@ -54,14 +76,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($telephone)) {
         $errors['telephone'] = 'Telefoonnummer moet worden ingevuld.';
     }
-    // Als er geen fouten zijn, voeg toe aan database
+
+    // Als er geen fouten zijn, werk de record bij in de database
     if (empty($errors)) {
-        $query = "UPDATE reservation
-        SET `res`='$type_appointments_id',`vehicle_id`='$vehicle_id',`date`=$date,`name`=$name,`email`='$email',`telephone`='$telephone'     
-        WHERE id = $id";
 
+        $query = "
+            UPDATE reservation 
+            SET type_appointments_id = '$type_appointments_id', vehicle_id = '$vehicle_id', date_of = '$date', name = '$name', email = '$email', telephone = '$telephone'
+            WHERE id = $id
+        ";
 
-        if ($result) {
+        $updateResult = mysqli_query($db, $query);
+        if ($updateResult) {
             header('Location: index.php');
             exit;
         } else {
@@ -75,22 +101,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Maak een reservering</title>
+    <title>Update reservering</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="">
-            <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo">
-        </a>
-    </div>
-</nav>
 
+<!-- Je navbar en andere HTML-code blijft hetzelfde -->
 
 <section class="section">
     <div class="container">
-        <h1 class="title">verander u reservering</h1>
+        <h1 class="title">Update reservering</h1>
         <form method="post" action="">
             <div class="field">
                 <label class="label" for="type_appointments_id">Wat wilt u reserveren?</label>
@@ -132,7 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="field">
                 <label class="label" for="date">Op welke datum?</label>
                 <div class="control">
-                    <input class="input" type="datetime-local" name="date" id="date" value="<?= htmlentities($date) ?>">
+                    <input class="input" type="datetime-local" name="date_of" id="date"
+                           value="<?= htmlentities($date) ?>">
                 </div>
                 <p class="help is-danger"><?= $errors['date'] ?? '' ?></p>
             </div>
@@ -166,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-link" type="submit">Opslaan</button>
+                    <button class="button is-link" type="submit" name="submit">Opslaan</button>
                 </div>
             </div>
         </form>
