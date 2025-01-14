@@ -9,11 +9,13 @@ $database = 'rfdw';
 $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: ' . mysqli_connect_error());
 
+require_once 'includes/security_check.php';
+
 // Initialiseer variabelen
 $errors = [];
 $type_appointments_id = '';
 $vehicle_id = '';
-$date = '';
+$date_of = '';
 $name = '';
 $email = '';
 $telephone = '';
@@ -22,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Haal gegevens op en valideer invoer
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
-    $date = mysqli_escape_string($db, $_POST['date'] ?? '');
+    $date_of = mysqli_escape_string($db, $_POST['date'] ?? '');
     $name = mysqli_escape_string($db, $_POST['name'] ?? '');
     $email = mysqli_escape_string($db, $_POST['email'] ?? '');
     $telephone = mysqli_escape_string($db, is_numeric($_POST['telephone']) ? $_POST['telephone'] : '');
@@ -34,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($vehicle_id)) {
         $errors['vehicle_id'] = 'Je moet een type voertuig selecteren.';
     }
-    if (empty($date)) {
+    if (empty($date_of)) {
         $errors['date'] = 'Datum moet worden ingevuld.';
     }
     if (empty($name)) {
@@ -50,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Als er geen fouten zijn, voeg toe aan database
     if (empty($errors)) {
         $query = "
-            INSERT INTO reservation (`type_appointments_id`, `vehicle_id`, `date`, `name`, `email`, `telephone`)
-            VALUES ('$type_appointments_id', '$vehicle_id', '$date', '$name', '$email', '$telephone')
+            INSERT INTO reservation (`type_appointments_id`, `vehicle_id`, `date_of`, `name`, `email`, `telephone`)
+            VALUES ('$type_appointments_id', '$vehicle_id', '$date_of', '$name', '$email', '$telephone')
         ";
         $result = mysqli_query($db, $query);
 
@@ -78,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="navbar-brand">
         <a class="navbar-item" href="">
             <figure class="image is-150x150px">
-                <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo"/>
+                <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo" />
             </figure>
         </a>
 
@@ -144,6 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </nav>
 
 
+
+
 <section class="section">
     <div class="container">
         <h1 class="title">Maak een reservering</h1>
@@ -154,15 +158,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="select">
                         <select name="type_appointments_id" id="type_appointments_id">
                             <option value="">Selecteer een optie</option>
-                            <option value="1" <?= isset($type_appointments_id) && $type_appointments_id == 1 ? 'selected' : '' ?>>
-                                APK keuring
-                            </option>
-                            <option value="2" <?= isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '' ?>>
-                                Ruitschade
-                            </option>
-                            <option value="3" <?= isset($type_appointments_id) && $type_appointments_id == 3 ? 'selected' : '' ?>>
-                                Airco onderhoud
-                            </option>
+                            <option value="1" <?= isset($type_appointments_id) && $type_appointments_id == 1 ? 'selected' : '' ?>>APK keuring</option>
+                            <option value="2" <?= isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '' ?>>Ruitschade</option>
+                            <option value="3" <?= isset($type_appointments_id) && $type_appointments_id == 3 ? 'selected' : '' ?>>Airco onderhoud</option>
                         </select>
                     </div>
                     <p class="help is-danger"><?= $errors['type_appointments_id'] ?? '' ?></p>
@@ -175,10 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="select">
                         <select name="vehicle_id" id="vehicle_id">
                             <option value="">Selecteer een voertuig</option>
-                            <option value="1" <?= isset($vehicle_id) && $vehicle_id == 1 ? 'selected' : '' ?>>Auto
-                            </option>
-                            <option value="2" <?= isset($vehicle_id) && $vehicle_id == 2 ? 'selected' : '' ?>>Motor
-                            </option>
+                            <option value="1" <?= isset($vehicle_id) && $vehicle_id == 1 ? 'selected' : '' ?>>Auto</option>
+                            <option value="2" <?= isset($vehicle_id) && $vehicle_id == 2 ? 'selected' : '' ?>>Motor</option>
                         </select>
                     </div>
                     <p class="help is-danger"><?= $errors['vehicle_id'] ?? '' ?></p>
@@ -186,18 +182,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="field">
-                <label class="label" for="date">Op welke datum?</label>
+                <label class="label" for="date_of">Op welke datum?</label>
                 <div class="control">
-                    <input class="input" type="date" name="date" id="date" value="<?= htmlentities($date) ?>">
+                    <input class="input" type="datetime-local" name="date_of" id="date_of" value="<?= htmlentities($date_of) ?>">
                 </div>
-                <p class="help is-danger"><?= $errors['date'] ?? '' ?></p>
+                <p class="help is-danger"><?= $errors['date_of'] ?? '' ?></p>
             </div>
 
             <div class="field">
                 <label class="label" for="name">Naam</label>
                 <div class="control">
-                    <input class="input" type="text" name="name" id="name" value="<?= htmlentities($name) ?>"
-                           placeholder="Uw naam">
+                    <input class="input" type="text" name="name" id="name" value="<?= htmlentities($name) ?>" placeholder="Uw naam">
                 </div>
                 <p class="help is-danger"><?= $errors['name'] ?? '' ?></p>
             </div>
@@ -205,8 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="field">
                 <label class="label" for="email">E-mail</label>
                 <div class="control">
-                    <input class="input" type="email" name="email" id="email" value="<?= htmlentities($email) ?>"
-                           placeholder="Uw e-mail">
+                    <input class="input" type="email" name="email" id="email" value="<?= htmlentities($email) ?>" placeholder="Uw e-mail">
                 </div>
                 <p class="help is-danger"><?= $errors['email'] ?? '' ?></p>
             </div>
@@ -214,8 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="field">
                 <label class="label" for="telephone">Telefoonnummer</label>
                 <div class="control">
-                    <input class="input" type="tel" name="telephone" id="telephone"
-                           value="<?= htmlentities($telephone) ?>" placeholder="Uw telefoonnummer">
+                    <input class="input" type="tel" name="telephone" id="telephone" value="<?= htmlentities($telephone) ?>" placeholder="Uw telefoonnummer">
                 </div>
                 <p class="help is-danger"><?= $errors['telephone'] ?? '' ?></p>
             </div>
@@ -245,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!---->
 <!--<footer style="background-color: #f4f4f4; padding: 20px;">-->
 <!--    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">-->
-<!--         Contactsectie -->-->
+<!--         Contactsectie -->
 <!--        <div style="flex: 1; min-width: 250px;">-->
 <!--            <h2>Contact</h2>-->
 <!--            <p>R.F. de Wit Auto's<br>Buitenweg 12<br>2931AC Krimpen aan de Lek</p>-->
@@ -254,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--            <p><strong>E:</strong> <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a></p>-->
 <!--        </div>-->
 <!---->
-<!--         Openingstijdensectie -->-->
+<!--         Openingstijdensectie -->
 <!--        <div style="flex: 1; min-width: 250px;">-->
 <!--            <h2>Openingstijden</h2>-->
 <!--            <ul style="list-style: none; padding: 0;">-->
@@ -268,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--            </ul>-->
 <!--        </div>-->
 <!---->
-<!--         Socials en beoordeling -->-->
+<!--         Socials en beoordeling -->
 <!--        <div style="flex: 1; min-width: 250px;">-->
 <!--            <h2>Onze socials</h2>-->
 <!--            <p>-->
