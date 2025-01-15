@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -181,13 +182,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div class="field">
-                <label class="label" for="date_of">Op welke datum?</label>
-                <div class="control">
-                    <input class="input" type="datetime-local" name="date_of" id="date_of" value="<?= htmlentities($date_of) ?>">
-                </div>
-                <p class="help is-danger"><?= $errors['date_of'] ?? '' ?></p>
-            </div>
+
+
+
+<!--            <div class="field">-->
+<!--                <label class="label" for="date_of">Op welke datum?</label>-->
+<!--                <div class="control">-->
+<!--                    <input class="input" type="datetime-local" name="date_of" id="date_of" value="--><?php //= htmlentities($date_of) ?><!--">-->
+<!--                </div>-->
+<!--                <p class="help is-danger">--><?php //= $errors['date_of'] ?? '' ?><!--</p>-->
+<!--            </div>-->
+
 
             <div class="field">
                 <label class="label" for="name">Naam</label>
