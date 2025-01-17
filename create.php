@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Haal gegevens op en valideer invoer
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
-    $date_of = mysqli_escape_string($db, $_POST['date'] ?? '');
+    $date_of = mysqli_escape_string($db, $_POST['date_of'] ?? '');
     $name = mysqli_escape_string($db, $_POST['name'] ?? '');
     $email = mysqli_escape_string($db, $_POST['email'] ?? '');
     $telephone = mysqli_escape_string($db, is_numeric($_POST['telephone']) ? $_POST['telephone'] : '');
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="">
+        <a class="navbar-item" href="index.php">
             <figure class="image is-150x150px">
                 <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo" />
             </figure>
