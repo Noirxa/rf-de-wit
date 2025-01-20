@@ -25,9 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
     $date_of = mysqli_escape_string($db, $_POST['date_of'] ?? '');
+    $start_time = mysqli_escape_string($db, $_POST['start_time'] ?? '');
+    $end_time = mysqli_escape_string($db, $_POST['end_time'] ?? '');
     $name = mysqli_escape_string($db, $_POST['name'] ?? '');
     $email = mysqli_escape_string($db, $_POST['email'] ?? '');
     $telephone = mysqli_escape_string($db, is_numeric($_POST['telephone']) ? $_POST['telephone'] : '');
+
 
     // Validatie van velden
     if (empty($type_appointments_id)) {
@@ -38,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (empty($date_of)) {
         $errors['date'] = 'Datum moet worden ingevuld.';
+    }
+
+    if (empty($start_time)) {
+        $errors['start_time'] = 'starttijd moet worden ingevuld.';
+    }
+
+    if (empty($end_time)) {
+        $errors['end_time'] = 'Eindtijd moet worden ingevuld.';
     }
     if (empty($name)) {
         $errors['name'] = 'Naam moet worden ingevuld.';
@@ -52,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Als er geen fouten zijn, voeg toe aan database
     if (empty($errors)) {
         $query = "
-            INSERT INTO reservation (`type_appointments_id`, `vehicle_id`, `date_of`, `name`, `email`, `telephone`)
-            VALUES ('$type_appointments_id', '$vehicle_id', '$date_of', '$name', '$email', '$telephone')
+            INSERT INTO reservation (`type_appointments_id`, `vehicle_id`, `date_of`, `start_time`, `end_time`,`name`, `email`, `telephone`)
+            VALUES ('$type_appointments_id', '$vehicle_id', '$date_of','$start_time','$end_time','$name', '$email', '$telephone'  )
         ";
         $result = mysqli_query($db, $query);
 
@@ -167,6 +178,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="help is-danger"><?= $errors['type_appointments_id'] ?? '' ?></p>
                 </div>
             </div>
+
+<!--            date-->
+
+            <div class="field">
+                <label class="label" for="date">Op welke datum?</label>
+                <div class="control">
+                    <input class="input" type="date" name="date_of" id="date_of"
+                           value="<?= htmlentities($date_of) ?>">
+                    <a href="select-date.php" class="button is-link">Nieuwe reservering</a>
+
+                </div>
+                <p class="help is-danger"><?= $errors['date_of'] ?? '' ?></p>
+            </div>
+
+            <div class="field">
+                <label class="label" for="start_time">Op welke tijd?</label>
+                <div class="control">
+                    <input class="input" type="time" name="start_time" id="start_time"
+                           value="<?= htmlentities($start_time) ?>">
+                </div>
+                <p class="help is-danger"><?= $errors['start_time'] ?? '' ?></p>
+            </div>
+
+            <div class="field">
+                <label class="label" for="end_time">Op welke tijd?</label>
+                <div class="control">
+                    <input class="input" type="time" name="end_time" id="end_time"
+                           value="<?= htmlentities($end_time) ?>">
+                </div>
+                <p class="help is-danger"><?= $errors['end_time'] ?? '' ?></p>
+            </div>
+
+
 
             <div class="field">
                 <label class="label" for="vehicle_id">Welk type voertuig?</label>

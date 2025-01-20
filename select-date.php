@@ -13,15 +13,15 @@
         <form action="select-time.php" method="get">
 
             <div class="field">
-                <label for="date" class="label">Selecteer een datum</label>
+                <label for="date_of" class="label">Selecteer een datum</label>
                 <div class="control">
-                    <input id="date" class="input" type="date" name="date" value="<?= date('Y-m-d') ?>">
+                    <input id="date_of" class="input" type="date" name="date_of" value="<?= date('Y-m-d') ?>">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-link">Kies een tijd</button>
+                    <button type="submit" name="submit" class="button is-link">Kies een tijd</button>
                 </div>
             </div>
         </form>

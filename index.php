@@ -106,6 +106,8 @@ mysqli_close($db);
 
                 <td><a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a></td>
                 <td><a href="delete.php?id=<?php echo $res['id']; ?>"> Delete </a></td>
+                <td><a href="indexayatest.php?id=<?php echo $res['id']; ?>"> yo </a></td>
+
 
             </tr>
         <?php } ?>
