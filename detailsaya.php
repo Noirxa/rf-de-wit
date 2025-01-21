@@ -72,7 +72,7 @@ mysqli_close($db);
 <main class="container">
     <section class="section content">
         <ul>
-
+            
             <li><?= htmlspecialchars($res['type_appointments_type']) ?></li>
             <li><?= htmlspecialchars($res['type_vehicle_type']) ?></li>
             <li><?= htmlspecialchars($res['date_of']) ?></li>

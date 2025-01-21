@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message = "Vul alstublieft alle vereiste velden in.";
     }
 }
+
 ?>
 
 <!-- Display Success or Error Message -->
