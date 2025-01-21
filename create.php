@@ -153,7 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+
     </div>
+
 
 </nav>
 
@@ -293,7 +295,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p  class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a></p>
         </div>
 
-<p hi<p
         <div style="flex: 1; min-width: 250px;">
             <h2 class="has-text-black is-size-5	">Openingstijden</h2>
             <br>
