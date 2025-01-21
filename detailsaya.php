@@ -15,10 +15,28 @@ require_once 'includes/security_check.php';
 $id = mysqli_escape_string($db, $_GET['id']);
 
 // Query to get all albums
-$query = "SELECT * FROM reservation
-    INNER JOIN actors
-    ON  kdrama_listt.actor_id = actors.id 
-    WHERE kdrama_listt.id = $id";
+$query = "
+SELECT 
+    reservation.id, 
+    type_appointments.type AS type_appointments_type, 
+    type_vehicle.type AS type_vehicle_type, 
+    reservation.date_of, 
+    reservation.start_time, 
+    reservation.end_time,
+    reservation.name, 
+    reservation.email, 
+    reservation.telephone 
+FROM 
+    reservation 
+LEFT JOIN 
+    type_appointments 
+ON 
+    reservation.type_appointments_id = type_appointments.type_appointments_id
+LEFT JOIN  
+    type_vehicle
+ON 
+   reservation.vehicle_id = type_vehicle.vehicle_id
+";
 
 // Execute the query and store the result (table in $result)
 $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);

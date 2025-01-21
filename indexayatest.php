@@ -116,7 +116,9 @@ mysqli_close($db);
                     <td>
                         <a href="edit.php?id=<?= $res['id']; ?>">Edit</a> |
                         <a href="delete.php?id=<?= $res['id']; ?>">Delete</a>
-                        <a href="logout.php?id=<?= $res['id']; ?>">Delete</a>
+                        <a href="logout.php?id=<?= $res['id']; ?>">logout</a>
+                        <a href="detailsaya.php?id=<?= $res['id']; ?>">details</a>
+
 
                     </td>
                 </tr>
