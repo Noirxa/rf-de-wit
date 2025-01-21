@@ -155,33 +155,46 @@
         <img src="https://rfdewitautos.nl/wp-content/uploads/2020/03/RF-de-Wit-Autos-Krimpen-ad-Lek-aug19-1-1024x683.jpg" alt="auto foto">
     </section>
 
-    <section class="section">
-        <div class="container " >
-            <h1 class="title">Welkom bij R.F. de Wit Auto's</h1>
-            <p class="subtitle">Voor inkoop en verkoop van jonge gebruikte auto's</p>
-        </div>
-    </section>
-
-
-    <section class="section" id="werkplaats">
+    <section class="section has-background-white has-text-black" id="werkplaats" style="border-top: 2px solid black;">
         <div class="container">
-            <h2 class="title">Werkplaats</h2>
-            <p>Heeft uw auto onderhoud nodig of is er wat defect? In onze werkplaats zullen wij u op vakkundige en professionele wijze weer op weg helpen. Voor een APK kunt u altijd zonder afspraak terecht.</p>
-            <p><strong>Direct contact met de werkplaats: 0180-444381</strong></p>
-            <br>
-            <img src="https://rfdewitautos.nl/wp-content/uploads/2020/03/Werkplaats.png" alt="werkplaats">
+            <div class="columns is-align-items-center has-text-black">
+                <div class="column is-half">
+                    <figure class="image" style="max-width: 40%; margin-left: 0; border: 1px solid grey;">
+                        <img src="https://rfdewitautos.nl/wp-content/uploads/2020/03/Werkplaats.png" alt="werkplaats">
+                    </figure>
+                </div>
+                <div class="column is-half">
+                    <h2 class="title has-text-black">Werkplaats</h2>
+
+                    <p>Heeft uw auto onderhoud nodig of is er wat defect? In onze werkplaats zullen wij u op vakkundige en professionele wijze weer op weg helpen. Voor een APK kunt u altijd zonder afspraak terecht.</p>
+                    <p class="has-text-black"><strong class="has-text-black">Direct contact met de werkplaats: 0180-444381</strong></p>
+                </div>
+            </div>
         </div>
     </section>
+
+
 
     <section class="section" id="contact">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG4-EfjeqnQslft0KqGRLDlkeIYRblR5cc6A&s" alt="contact">
+        <div class="container">
+            <div class="columns is-align-items-center">
+                <div class="column is-half">
+                    <h2 class="title">Contact</h2>
 
-        <div class="container is-flex-direction-row	">
-            <h2 class="title">Contact</h2>
-            <p>Heeft u een vraag aan ons over een reservatie of reparatie? Neem via verschillende kanalen contact op om uw vraag beantwoord te krijgen.</p>
-            <a href="contact.php" class="button is-link">Naar contact</a>
+                    <p>Heeft u een vraag aan ons over een reservatie of reparatie? Neem via verschillende kanalen contact op om uw vraag beantwoord te krijgen.</p>
+                    <a href="contact.php" class="button is-link">Naar contact</a>
+                </div>
+                <div class="column is-half">
+                    <figure class="image ml-auto" style="max-width: 40% ; border: 1px solid grey;">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG4-EfjeqnQslft0KqGRLDlkeIYRblR5cc6A&s" alt="contact">
+                    </figure>
+                </div>
+            </div>
         </div>
     </section>
+
+
+
 </main>
 </body>
 
