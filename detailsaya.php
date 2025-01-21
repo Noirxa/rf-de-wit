@@ -36,6 +36,7 @@ LEFT JOIN
     type_vehicle
 ON 
    reservation.vehicle_id = type_vehicle.vehicle_id
+WHERE reservation.id = $id
 ";
 
 // Execute the query and store the result (table in $result)
