@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start the session to access session variables
+
 $host = '127.0.0.1';
 $username = 'root';
 $password = '';
@@ -6,6 +8,36 @@ $database = 'rfdw';
 
 $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: ' . mysqli_connect_error());
+
+//LOG IN MESSAGE
+
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+require_once('includes/connection.php');
+
+$email = $_SESSION['user'];
+
+$user_query = "SELECT first_name, last_name FROM users WHERE email = '$email'";
+
+$user_result = mysqli_query($db, $user_query);
+
+if ($user_result && mysqli_num_rows($user_result) == 1) {
+    $user = mysqli_fetch_assoc($user_result);
+
+    if (isset($user['first_name']) && isset($user['last_name'])) {
+        $full_name = $user['first_name'] . ' ' . $user['last_name'];
+    } else {
+        $full_name = "Error: Full name not available.";
+    }
+} else {
+    $full_name = "Error: User not found.";
+}
+
+mysqli_free_result($user_result);
+
+//END OF BLOCK
 
 $query = "
 SELECT 
@@ -63,7 +95,7 @@ mysqli_close($db);
 
 <section class="head mx-5">
     <h1 class="is-size-2 has-text-white has-text-weight-bold"> Reservations </h1>
-    <p> Welcome back, [USER]. </p>
+    <p> Welcome Back, <?php echo $full_name; ?> ! </p>
 
     <a href="create.php" class="button"> Create An Appointment </a>
     <a href="register.php" class="button"> Register New Mechanic </a>
@@ -103,8 +135,7 @@ mysqli_close($db);
 
                 <td><a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a></td>
                 <td><a href="delete.php?id=<?php echo $res['id']; ?>"> Delete </a></td>
-                <td><a href="indexayatest.php?id=<?php echo $res['id']; ?>"> yo </a></td>
-
+<!--                <td><a href="indexayatest.php?id=--><?php //echo $res['id']; ?><!--"> yo </a></td>-->
 
             </tr>
         <?php } ?>
