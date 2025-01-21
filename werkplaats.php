@@ -124,7 +124,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="hometryaya.php">
                 Home
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
@@ -139,7 +139,7 @@
                     <a class="navbar-item" href="#">
                         Auto kopen
                     </a>
-                    <a class="navbar-item" href="#">
+                    <a class="navbar-item" href="contact.php">
                         Contact
                     </a>
                     <hr class="navbar-divider">
@@ -149,13 +149,13 @@
                 </div>
             </div>
 
-            <a class="navbar-item" href="#werkplaats">
+            <a class="navbar-item" href="werkplaats.php">
                 Werkplaats
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="create.php">
                 Reserveren
             </a>
-            <a class="navbar-item" href="#contact">
+            <a class="navbar-item" href="contact.php">
                 Contact
             </a>
         </div>
