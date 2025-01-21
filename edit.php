@@ -34,6 +34,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $type_appointments_id = $reservation['type_appointments_id'];
             $vehicle_id = $reservation['vehicle_id'];
             $date = $reservation['date_of'];
+            $start_time = $reservation['start_time'];
+            $end_time = $reservation['end_time'];
             $name = $reservation['name'];
             $email = $reservation['email'];
             $telephone = $reservation['telephone'];
@@ -48,14 +50,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     // Haal gegevens op en valideer invoer
     $type_appointments_id = isset($_POST['type_appointments_id']) && is_numeric($_POST['type_appointments_id']) ? $_POST['type_appointments_id'] : null;
     $vehicle_id = isset($_POST['vehicle_id']) && is_numeric($_POST['vehicle_id']) ? $_POST['vehicle_id'] : null;
-    $date = mysqli_escape_string($db, $_POST['date_of'] ?? '');
+    $date_of = mysqli_escape_string($db, $_POST['date_of'] ?? '');
+    $start_time = mysqli_escape_string($db, $_POST['start_time'] ?? '');
+    $end_time = mysqli_escape_string($db, $_POST['end_time'] ?? '');
     $name = mysqli_escape_string($db, $_POST['name'] ?? '');
     $email = mysqli_escape_string($db, $_POST['email'] ?? '');
     $telephone = mysqli_escape_string($db, is_numeric($_POST['telephone']) ? $_POST['telephone'] : '');
+
 
     // Validatie van velden
     if (empty($type_appointments_id)) {
@@ -67,6 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($date)) {
         $errors['date_of'] = 'Datum moet worden ingevuld.';
     }
+
+    if (empty($start_time)) {
+        $errors['start_time'] = 'starttijd moet worden ingevuld.';
+    }
+
+    if (empty($end_time)) {
+        $errors['end_time'] = 'Eindtijd moet worden ingevuld.';
+    }
+
     if (empty($name)) {
         $errors['name'] = 'Naam moet worden ingevuld.';
     }
@@ -79,10 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Als er geen fouten zijn, werk de record bij in de database
     if (empty($errors)) {
+        
 
         $query = "
             UPDATE reservation 
-            SET type_appointments_id = '$type_appointments_id', vehicle_id = '$vehicle_id', date_of = '$date', name = '$name', email = '$email', telephone = '$telephone'
+            SET type_appointments_id = '$type_appointments_id', vehicle_id = '$vehicle_id', date_of = '$date', start_time = '$start_time',end_time = '$end_time' ,name = '$name', email = '$email', telephone = '$telephone'
             WHERE id = $id
         ";
 
@@ -105,9 +119,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="">
+        <a class="navbar-item" href="index.php">
             <figure class="image is-150x150px">
                 <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo"/>
             </figure>
@@ -175,11 +190,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </nav>
 
 
-<!-- Je navbar en andere HTML-code blijft hetzelfde -->
-
 <section class="section">
     <div class="container">
-        <h1 class="title">Update reservering</h1>
+        <h1 class="title">Verander u reservering</h1>
         <form method="post" action="">
             <div class="field">
                 <label class="label" for="type_appointments_id">Wat wilt u reserveren?</label>
@@ -202,6 +215,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
+
+            <div class="field">
+                <label class="label" for="start_time">Op welke tijd?</label>
+                <div class="control">
+                    <input class="input" type="time" name="start_time" id="start_time"
+                           value="<?= htmlentities($start_time) ?>" min="08:30" max="17:00">
+                </div>
+                <p class="help is-danger"><?= $errors['start_time'] ?? '' ?></p>
+            </div>
+
+            <div class="field">
+                <label class="label" for="end_time">Op welke tijd?</label>
+                <div class="control">
+                    <input class="input" type="time" name="end_time" id="end_time"
+                           value="<?= htmlentities($end_time) ?>" min="08:30" max="17:00">
+                </div>
+                <p class="help is-danger"><?= $errors['end_time'] ?? '' ?></p>
+            </div>
+
+
             <div class="field">
                 <label class="label" for="vehicle_id">Welk type voertuig?</label>
                 <div class="control">
@@ -218,14 +251,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div class="field">
-                <label class="label" for="date">Op welke datum?</label>
-                <div class="control">
-                    <input class="input" type="date" name="date_of" id="date_of"
-                           value="<?= htmlentities($date) ?>">
-                </div>
-                <p class="help is-danger"><?= $errors['date_of'] ?? '' ?></p>
-            </div>
 
             <div class="field">
                 <label class="label" for="name">Naam</label>
@@ -256,13 +281,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-link" type="submit" name="submit">Opslaan</button>
+                    <button class="button is-link" type="submit">Opslaan</button>
                 </div>
             </div>
         </form>
     </div>
 </section>
-
 <footer style="background-color: #f4f4f4; padding: 20px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
         <!--      <h1> <strong>contact</strong>Contact</h1>-->
@@ -270,15 +294,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="has-text-black is-size-5	">Contact</h2>
             <br>
             <p class=" has-text-grey-darker	">R.F. de Wit Auto's<br>Buitenweg 12<br>2931AC Krimpen aan de Lek</p>
-            <p><img src="https://www.abk-kunststoffen.nl/uploads/imagemanager/rdw_erkend_breed.jpg" alt="RDW Erkend" style="height: 40px; margin-top: 10px;"></p>
+            <p><img src="https://www.abk-kunststoffen.nl/uploads/imagemanager/rdw_erkend_breed.jpg" alt="RDW Erkend"
+                    style="height: 40px; margin-top: 10px;"></p>
 
         </div>
 
         <div style="flex: 1; min-width: 250px;">
             <br>
             <br>
-            <p  class=" has-text-grey-darker">M: 0642128724</p>
-            <p  class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a></p>
+            <p class=" has-text-grey-darker">M: 0642128724</p>
+            <p class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a>
+            </p>
         </div>
 
 
@@ -301,7 +327,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>
                 <br>
                 <a href="https://www.facebook.com/rfdewitautos/" style="text-decoration: none;">
-                    <img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" alt="Facebook" style="height: 30px;">
+                    <img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" alt="Facebook"
+                         style="height: 30px;">
                 </a>
         </div>
     </div>
