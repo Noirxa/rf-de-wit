@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Als er geen fouten zijn, werk de record bij in de database
     if (empty($errors)) {
+        
 
         $query = "
             UPDATE reservation 
@@ -219,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label class="label" for="start_time">Op welke tijd?</label>
                 <div class="control">
                     <input class="input" type="time" name="start_time" id="start_time"
-                           value="<?= htmlentities($start_time) ?>">
+                           value="<?= htmlentities($start_time) ?>" min="08:30" max="17:00">
                 </div>
                 <p class="help is-danger"><?= $errors['start_time'] ?? '' ?></p>
             </div>
@@ -228,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label class="label" for="end_time">Op welke tijd?</label>
                 <div class="control">
                     <input class="input" type="time" name="end_time" id="end_time"
-                           value="<?= htmlentities($end_time) ?>">
+                           value="<?= htmlentities($end_time) ?>" min="08:30" max="17:00">
                 </div>
                 <p class="help is-danger"><?= $errors['end_time'] ?? '' ?></p>
             </div>
