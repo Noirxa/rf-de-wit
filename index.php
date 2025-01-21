@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session to access session variables
+session_start();
 
 $host = '127.0.0.1';
 $username = 'root';
@@ -39,55 +39,69 @@ mysqli_free_result($user_result);
 
 //END OF BLOCK
 
-$query = "
-SELECT 
-    reservation.id, 
-    type_appointments.type AS type_appointments_type, 
-    type_vehicle.type AS type_vehicle_type, 
-    reservation.date_of, 
-    reservation.start_time, 
-    reservation.end_time,
-    reservation.name, 
-    reservation.email, 
-    reservation.telephone 
-FROM 
-    reservation 
-LEFT JOIN 
-    type_appointments 
-ON 
-    reservation.type_appointments_id = type_appointments.type_appointments_id
-LEFT JOIN  
-    type_vehicle
-ON 
-   reservation.vehicle_id = type_vehicle.vehicle_id
-";
+$filter_date = isset($_GET['date']) ? $_GET['date'] : '';
 
-//$query = "SELECT id, type_appointments_id AS type_appointments.type_appointments.type, vehicle_id, date_of, name, email, telephone FROM reservation
-//LEFT JOIN type_appointments
-//ON reservation.type_appointments_id = type_appointments.type_appointments_id";
-
-$result = mysqli_query($db, $query)
-or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+// FILTERED OR NOT FILTERED
+if (!empty($filter_date)) {
+    $filter_query = "
+    SELECT 
+        reservation.id, 
+        type_appointments.type AS type_appointments_type, 
+        type_vehicle.type AS type_vehicle_type, 
+        reservation.date_of, 
+        reservation.start_time, 
+        reservation.end_time,
+        reservation.name, 
+        reservation.email, 
+        reservation.telephone 
+    FROM 
+        reservation 
+    LEFT JOIN 
+        type_appointments 
+    ON 
+        reservation.type_appointments_id = type_appointments.type_appointments_id
+    LEFT JOIN  
+        type_vehicle
+    ON 
+       reservation.vehicle_id = type_vehicle.vehicle_id
+    WHERE reservation.date_of = '" . mysqli_real_escape_string($db, $filter_date) . "'
+    ";
+    $result = mysqli_query($db, $filter_query)
+    or die('Error ' . mysqli_error($db) . ' with query ' . $filter_query);
+} else {
+    $query = "
+    SELECT 
+        reservation.id, 
+        type_appointments.type AS type_appointments_type, 
+        type_vehicle.type AS type_vehicle_type, 
+        reservation.date_of, 
+        reservation.start_time, 
+        reservation.end_time,
+        reservation.name, 
+        reservation.email, 
+        reservation.telephone 
+    FROM 
+        reservation 
+    LEFT JOIN 
+        type_appointments 
+    ON 
+        reservation.type_appointments_id = type_appointments.type_appointments_id
+    LEFT JOIN  
+        type_vehicle
+    ON 
+       reservation.vehicle_id = type_vehicle.vehicle_id
+    ";
+    $result = mysqli_query($db, $query)
+    or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+}
 
 $reservations = [];
-
 
 while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
 
-
-//FILTER SYSTEM
-$filter_date = isset($_GET['date']) ? $_GET['date'] : '';
-
-if (!empty($filter_date)) {
-    $filter_query = "SELECT * FROM reservation WHERE reservation.date_of = '" . mysqli_real_escape_string($db, $filter_date) . "'";
-
-    // Execute the query
-    $filter_result = mysqli_query($db, $filter_query)
-    or die('Error ' . mysqli_error($db) . ' with query ' . $filter_query);
-}
-//END OF BLOCK
+mysqli_free_result($result);
 
 mysqli_close($db);
 ?>
@@ -158,9 +172,10 @@ mysqli_close($db);
                 <th> <?php echo $res ['email'] ?> </th>
                 <th> <?php echo $res ['telephone'] ?> </th>
 
+                <td> <a href="detailsaya.php?id=<?php echo $res['id']; ?>"> Details </a></td>
                 <td><a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a></td>
                 <td><a href="delete.php?id=<?php echo $res['id']; ?>"> Delete </a></td>
-<!--                <td><a href="indexayatest.php?id=--><?php //echo $res['id']; ?><!--"> yo </a></td>-->
+
 
             </tr>
         <?php } ?>
