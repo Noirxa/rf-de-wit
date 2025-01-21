@@ -76,6 +76,19 @@ while ($row = mysqli_fetch_assoc($result)) {
     $reservations[] = $row;
 }
 
+
+//FILTER SYSTEM
+$filter_date = isset($_GET['date']) ? $_GET['date'] : '';
+
+if (!empty($filter_date)) {
+    $filter_query = "SELECT * FROM reservation WHERE reservation.date_of = '" . mysqli_real_escape_string($db, $filter_date) . "'";
+
+    // Execute the query
+    $filter_result = mysqli_query($db, $filter_query)
+    or die('Error ' . mysqli_error($db) . ' with query ' . $filter_query);
+}
+//END OF BLOCK
+
 mysqli_close($db);
 ?>
 
@@ -94,12 +107,24 @@ mysqli_close($db);
 
 
 <section class="head mx-5">
-    <h1 class="is-size-2 has-text-white has-text-weight-bold"> Reservations </h1>
+    <h1 class="title is-1 has-text-white has-text-weight-bold"> Reservations </h1>
     <p> Welcome Back, <?php echo $full_name; ?> ! </p>
 
     <a href="create.php" class="button"> Create An Appointment </a>
     <a href="register.php" class="button"> Register New Mechanic </a>
     <a href=" " class="button"> Go To Contact Questions </a>
+</section>
+
+<section class="section">
+    <form method="get" class="mb-5">
+        <div class="field">
+            <label class="label" for="date">Filter by Date:</label>
+            <div class="control">
+                <input class="input" type="date" name="date" id="date" value="<?= htmlspecialchars($filter_date) ?>">
+            </div>
+        </div>
+        <button class="button" type="submit">Filter</button>
+    </form>
 </section>
 
 <section class="section">
@@ -141,6 +166,11 @@ mysqli_close($db);
         <?php } ?>
         </tbody>
     </table>
+</section>
+
+<section class="section">
+<a href="logout.php" class="button"> Log Out </a>
+    <br>
     <p> R.F. De Wit Auto's © </p>
 </section>
 
