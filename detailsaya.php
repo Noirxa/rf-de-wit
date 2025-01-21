@@ -1,5 +1,5 @@
 <?php
-//$ID= $_GET['id'];
+//$id= $_GET['id'];
 
 $host = '127.0.0.1';
 $username = 'root';
@@ -14,7 +14,7 @@ require_once 'includes/security_check.php';
 
 $id = mysqli_escape_string($db, $_GET['id']);
 
-// Query to get all albums
+// Query to get specific reservation details based on the ID
 $query = "
 SELECT 
     reservation.id, 
@@ -36,7 +36,15 @@ LEFT JOIN
     type_vehicle
 ON 
    reservation.vehicle_id = type_vehicle.vehicle_id
-";
+WHERE 
+   reservation.id = '$id'";  // Add this line to filter by id
+
+// Execute the query and store the result (table in $result)
+$result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+
+// Fetch the row corresponding to the specific reservation
+$res = mysqli_fetch_assoc($result);
+
 
 // Execute the query and store the result (table in $result)
 $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
@@ -72,7 +80,9 @@ mysqli_close($db);
     <section class="section content">
         <ul>
 
-            <li><?= htmlspecialchars($res['type_appointments_type']) ?></li>
+            <li><?= htmlspecialchars($res['id']) ?></li>
+
+            <li><?= htmlspecialchars($res['type_appointments_type'])  ?></li>
             <li><?= htmlspecialchars($res['type_vehicle_type']) ?></li>
             <li><?= htmlspecialchars($res['date_of']) ?></li>
             <li><?= htmlspecialchars($res['start_time']) ?></li>

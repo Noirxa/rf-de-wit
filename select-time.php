@@ -106,7 +106,7 @@ if (!empty($_GET['date_of'])) {
 <head>
     <title>Nieuwe reservering - tijd</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
 
@@ -260,14 +260,15 @@ if (!empty($_GET['date_of'])) {
                 <p class="help is-danger"><?= $errors['telephone'] ?? '' ?></p>
             </div>
 
+<!---->
+<!--            <section class="container content">-->
+<!--                <form action="" method="POST">-->
 
-            <section class="container content">
-                <form action="" method="POST">
 
+                    <div class="field is-vertical">
+                        <div class="">
+                            <label for="time" class="label pb-2">Tijd</label>
 
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label for="time" class="label">Tijd</label>
                         </div>
                         <div class="field-body">
                             <div class="field is-narrow">
@@ -301,7 +302,7 @@ if (!empty($_GET['date_of'])) {
             </div>
 
         </form>
-    </div>
+<!--    </div>-->
 </section>
 <!--<footer>-->
 

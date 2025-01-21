@@ -87,7 +87,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="hometryaya.php">
                 Home
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
@@ -112,10 +112,10 @@
                 </div>
             </div>
 
-            <a class="navbar-item" href="#werkplaats">
+            <a class="navbar-item" href="werkplaats.php">
                 Werkplaats
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="select-date.php">
                 Reserveren
             </a>
             <a class="navbar-item" href="#contact">
