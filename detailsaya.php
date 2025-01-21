@@ -42,7 +42,7 @@ ON
 $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
 
 // Create an empty array to store all albums
-$products = mysqli_fetch_assoc($result);
+$res = mysqli_fetch_assoc($result);
 
 
 mysqli_close($db);
@@ -56,25 +56,30 @@ mysqli_close($db);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kdrama - Details </title>
+    <title>Details </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
 
 <header class="hero is-info">
     <div class="hero-body">
-        <p class="title">K-Drama</p>
-        <p class="subtitle"><?= $products['name'] ?> </p>
+        <p class="title">Details</p>
+        <p class="subtitle"><?= $res['name'] ?> </p>
     </div>
 </header>
 
 <main class="container">
     <section class="section content">
         <ul>
-            <li>Name:<?= htmlentities($products['name']) ?></li>
-            <li>Genre:<?= htmlentities($products['genre']) ?> </li>
-            <li>Rating:<?=htmlentities( $products['rating']) ?></li>
-            <li>Actors: <?= htmlentities($products['actor']) ?> </li>
+
+            <li><?= htmlspecialchars($res['type_appointments_type']) ?></li>
+            <li><?= htmlspecialchars($res['type_vehicle_type']) ?></li>
+            <li><?= htmlspecialchars($res['date_of']) ?></li>
+            <li><?= htmlspecialchars($res['start_time']) ?></li>
+            <li><?= htmlspecialchars($res['end_time']) ?></li>
+            <li><?= htmlspecialchars($res['name']) ?></li>
+            <li><?= htmlspecialchars($res['email']) ?></li>
+            <li><?= htmlspecialchars($res['telephone']) ?></li>
         </ul>
         <a class="button" href="index.php">Go back to the list</a>
     </section>
