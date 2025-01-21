@@ -1,5 +1,47 @@
 <?php
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form inputs
+    $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+    $phone = isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '';
+    $subject = isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : '';
+    $message = isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '';
+
+    // Validate required fields
+    if (!empty($name) && !empty($email) && !empty($message)) {
+        // Prepare email content
+        $to = 'chaimtahapary01gmail.com'; // Change this to your contact email address
+        $email_subject = "Contactformulier: $subject";
+        $email_body = "Naam: $name\nE-mail: $email\nTelefoonnummer: $phone\n\nBericht:\n$message";
+
+        $headers = "From: $email\r\n";
+        $headers .= "Reply-To: $email\r\n";
+
+        // Send the email
+        if (mail($to, $email_subject, $email_body, $headers)) {
+            $success_message = "Uw bericht is succesvol verzonden!";
+        } else {
+            $error_message = "Er was een fout bij het verzenden van uw bericht. Probeer het later opnieuw.";
+        }
+    } else {
+        $error_message = "Vul alstublieft alle vereiste velden in.";
+    }
+}
 ?>
+
+<!-- Display Success or Error Message -->
+<?php if (!empty($success_message)): ?>
+    <div class="notification is-success">
+        <?= $success_message ?>
+    </div>
+<?php elseif (!empty($error_message)): ?>
+    <div class="notification is-danger">
+        <?= $error_message ?>
+    </div>
+<?php endif; ?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -79,102 +121,102 @@
     </div>
 </nav>
 <br>
-<div class="container">
-    <div class="columns is-centered">
+<form action="" method="POST">
+    <div class="container">
+        <div class="columns is-centered">
 
-        <!-- Image on the Left Column -->
-        <div class="column is-half-mobile is-one-third-tablet is-one-third-desktop is-flex is-justify-content-start is-align-items-center mr-6">
-            <figure class="image is-4by3 is-fullwidth">
-                <img src="https://rfdewitautos.nl/wp-content/uploads/2020/03/RF-de-Wit-Autos-Krimpen-ad-Lek-aug19-1-1024x683.jpg"
-                     alt="Car Image"/>
-            </figure>
-        </div>
-
-        <!-- Form on the Right Column -->
-        <div class="column is-full-mobile is-two-thirds-tablet is-two-thirds-desktop">
-            <!-- Contact Information Header -->
-            <div class="field">
-                <h2 class="title is-4 has-text-centered">Uw contactgegevens</h2>
+            <!-- Image on the Left Column -->
+            <div class="column is-half-mobile is-one-third-tablet is-one-third-desktop is-flex is-justify-content-start is-align-items-center mr-6">
+                <figure class="image is-4by3 is-fullwidth">
+                    <img src="https://rfdewitautos.nl/wp-content/uploads/2020/03/RF-de-Wit-Autos-Krimpen-ad-Lek-aug19-1-1024x683.jpg"
+                         alt="Car Image"/>
+                </figure>
             </div>
 
-            <!-- Name Field -->
-            <div class="field">
-                <label class="label is-small">Naam</label>
-                <p class="control has-icons-left">
-                    <input class="input is-small" type="text" placeholder="Vul naam in">
-                    <span class="icon is-small is-left">
+            <!-- Form on the Right Column -->
+            <div class="column is-full-mobile is-two-thirds-tablet is-two-thirds-desktop">
+                <!-- Contact Information Header -->
+                <div class="field">
+                    <h2 class="title is-4 has-text-centered">Uw contactgegevens</h2>
+                </div>
+
+                <!-- Name Field -->
+                <div class="field">
+                    <label class="label is-small">Naam</label>
+                    <p class="control has-icons-left">
+                        <input class="input is-small" type="text" name="name" placeholder="Vul naam in" required>
+                        <span class="icon is-small is-left">
                         <i class="fas fa-user"></i>
                     </span>
-                </p>
-            </div>
-
-            <!-- Email Field -->
-            <div class="field">
-                <label class="label is-small">Email</label>
-                <p class="control has-icons-left has-icons-right">
-                    <input class="input is-small" type="email" placeholder="Vul email in">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                    </span>
-                    <span class="icon is-small is-right">
-                        <i class="fas fa-check"></i>
-                    </span>
-                </p>
-            </div>
-
-            <!-- Phone Number Field -->
-            <div class="field">
-                <label class="label is-small">Telefoonnummer</label>
-                <div class="field has-addons">
-                    <p class="control">
-                        <a class="button is-static is-small">+31</a>
-                    </p>
-                    <p class="control is-expanded">
-                        <input class="input is-small" type="tel" placeholder="Uw telefoonnummer">
                     </p>
                 </div>
-                <p class="help is-small">Begin met uw nummer</p>
-            </div>
 
-            <!-- Subject Field -->
-            <div class="field">
-                <label class="label is-small">Onderwerp</label>
-                <div class="control">
-                    <div class="select is-small is-fullwidth">
-                        <select>
-                            <option>Occasions</option>
-                            <option>Werkplaats</option>
-                            <option>Anders</option>
-                        </select>
+                <!-- Email Field -->
+                <div class="field">
+                    <label class="label is-small">Email</label>
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input is-small" type="email" name="email" placeholder="Vul email in" required>
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                        <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    </p>
+                </div>
+
+                <!-- Phone Number Field -->
+                <div class="field">
+                    <label class="label is-small">Telefoonnummer</label>
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="button is-static is-small">+31</a>
+                        </p>
+                        <p class="control is-expanded">
+                            <input class="input is-small" type="tel" name="phone" placeholder="Uw telefoonnummer">
+                        </p>
+                    </div>
+                    <p class="help is-small">Begin met uw nummer</p>
+                </div>
+
+                <!-- Subject Field -->
+                <div class="field">
+                    <label class="label is-small">Onderwerp</label>
+                    <div class="control">
+                        <div class="select is-small is-fullwidth">
+                            <select name="subject" required>
+                                <option>Occasions</option>
+                                <option>Werkplaats</option>
+                                <option>Anders</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Field -->
+                <div class="field">
+                    <label class="label is-small">Vraag</label>
+                    <div class="control">
+                        <textarea class="textarea is-small" name="message" placeholder="Leg uit hoe wij u kunnen helpen"
+                                  required></textarea>
+                    </div>
+                </div>
+
+                <!-- Send Message Button -->
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary is-small">Verzenden</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Question Field -->
-            <div class="field">
-                <label class="label is-small">Vraag</label>
-                <div class="control">
-                    <textarea class="textarea is-small" placeholder="Leg uit hoe wij u kunnen helpen"></textarea>
-                </div>
-            </div>
-
-            <!-- Send Message Button -->
-            <div class="field">
-                <div class="control">
-                    <button class="button is-primary is-small">Verzenden</button>
-                </div>
-            </div>
         </div>
-
     </div>
-</div>
-
-<br>
+</form>
 
 <!--<footer>-->
 
-
-<footer style="background-color: #f4f4f4; padding: 20px;">
+<footer style="background-color: #f4f4f4; padding: 20px; margin-top: 40px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
         <!--      <h1> <strong>contact</strong>Contact</h1>-->
         <div style="flex: 1; min-width: 250px;">
@@ -190,7 +232,8 @@
             <br>
             <br>
             <p class=" has-text-grey-darker">M: 0642128724</p>
-            <p class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a>
+            <p class=" has-text-grey-darker">E: <a
+                        href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a>
             </p>
         </div>
 
