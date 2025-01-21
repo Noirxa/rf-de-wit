@@ -4,21 +4,23 @@ $grey: #808080;
 $white: #FFFFFF;
 $green: #007400;
 
-//Use SASS for PAGES
-@use "bulma/sass/utilities" with (
+//Use SASS for All Pages
+@use "bulma/sass" with (
 $family-primary: 'Mulish, sans-serif',
 $background: $black,
 $text: $white,
 $text-weak: $grey,
-);
 
-//Stuff for later directory
-//$button-static-color: $green,
-//$button-active-color: $white,
-//$button-text-color: $white,
-//$button-text-hover-color: $green,
-//$table-color: $grey,
-//$table-cell-border-color: $white
+//Use SASS for Buttons
+$button-static-color: $green,
+$button-active-color: $white,
+$button-text-color: $white,
+$button-text-hover-color: $green,
+
+//Use SASS for Tables
+$table-color: $grey,
+$table-cell-border-color: $white
+);
 
 //Import Font as Intended
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
