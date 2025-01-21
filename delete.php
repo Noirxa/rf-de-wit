@@ -47,7 +47,7 @@ if (isset($_POST['confirm_delete'])) {
 <head>
     <meta charset="UTF-8">
     <title>Verwijder Reservering</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="my-bulma-project.css">
 </head>
 <body>
 <section class="section">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>R.F. de Wit Auto's - Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="my-bulma-project.css">
     <style>
         .slideshow-container {
             position: relative;
