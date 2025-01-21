@@ -3,7 +3,7 @@
 <head>
     <title>Nieuwe reservering - datum</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="my-bulma-project.css">
 </head>
 <body>
 <section class="container">

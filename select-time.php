@@ -106,7 +106,7 @@ if (!empty($_GET['date_of'])) {
 <head>
     <title>Nieuwe reservering - tijd</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="my-bulma-project.css">
 </head>
 <body>
 
