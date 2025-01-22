@@ -2,7 +2,7 @@
 ?>
 <head>
     <meta charset="UTF-8">
-    <title>R.F. de Wit Auto's - Home</title>
+    <title>R.F. de Wit Auto's - Werkplaats</title>
     <link rel="stylesheet" href="my-bulma-project.css">
     <style>
         .slideshow-container {
