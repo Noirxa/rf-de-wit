@@ -10,7 +10,7 @@ session_unset();
 session_destroy();
 
 // Redirect to login page
-header('location: index.php');
+header('location: hometryaya.php');
 // Exit the code.
 exit();
 ?>
