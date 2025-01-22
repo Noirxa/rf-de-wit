@@ -36,7 +36,6 @@ LEFT JOIN
     type_vehicle
 ON 
    reservation.vehicle_id = type_vehicle.vehicle_id
-WHERE reservation.id = $id
 ";
 
 // Execute the query and store the result (table in $result)
@@ -58,7 +57,7 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Details </title>
-    <link rel="stylesheet" href="my-bulma-project.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
 
@@ -79,7 +78,7 @@ mysqli_close($db);
 <main class="container">
     <section class="section content pb-0">
         <ul>
-            
+
             <li><?= htmlspecialchars($res['type_appointments_type']) ?></li>
             <li><?= htmlspecialchars($res['type_vehicle_type']) ?></li>
             <li><?= htmlspecialchars($res['date_of']) ?></li>

@@ -9,7 +9,7 @@ $database = 'rfdw';
 $db = mysqli_connect($host, $username, $password, $database)
 or die('Error: ' . mysqli_connect_error());
 
-require_once 'includes/security_check.php';
+//require_once 'includes/security_check.php';
 
 // Initialiseer variabelen
 $errors = [];
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="navbar-brand">
         <a class="navbar-item" href="index.php">
             <figure class="image is-150x150px">
-                <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo" />
+                <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo"/>
             </figure>
         </a>
 
@@ -160,8 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </nav>
 
 
-
-
 <section class="section">
     <div class="container">
         <h1 class="title">Maak een reservering</h1>
@@ -172,16 +170,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="select">
                         <select name="type_appointments_id" id="type_appointments_id">
                             <option value="">Selecteer een optie</option>
-                            <option value="1" <?= isset($type_appointments_id) && $type_appointments_id == 1 ? 'selected' : '' ?>>APK keuring</option>
-                            <option value="2" <?= isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '' ?>>Ruitschade</option>
-                            <option value="3" <?= isset($type_appointments_id) && $type_appointments_id == 3 ? 'selected' : '' ?>>Airco onderhoud</option>
+                            <option value="1" <?= isset($type_appointments_id) && $type_appointments_id == 1 ? 'selected' : '' ?>>
+                                APK keuring
+                            </option>
+                            <option value="2" <?= isset($type_appointments_id) && $type_appointments_id == 2 ? 'selected' : '' ?>>
+                                Ruitschade
+                            </option>
+                            <option value="3" <?= isset($type_appointments_id) && $type_appointments_id == 3 ? 'selected' : '' ?>>
+                                Airco onderhoud
+                            </option>
                         </select>
                     </div>
                     <p class="help is-danger"><?= $errors['type_appointments_id'] ?? '' ?></p>
                 </div>
             </div>
 
-<!--            date-->
+            <!--            date-->
 
             <div class="field">
                 <label class="label" for="date">Op welke datum?</label>
@@ -213,15 +217,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
 
-
             <div class="field">
                 <label class="label" for="vehicle_id">Welk type voertuig?</label>
                 <div class="control">
                     <div class="select">
                         <select name="vehicle_id" id="vehicle_id">
                             <option value="">Selecteer een voertuig</option>
-                            <option value="1" <?= isset($vehicle_id) && $vehicle_id == 1 ? 'selected' : '' ?>>Auto</option>
-                            <option value="2" <?= isset($vehicle_id) && $vehicle_id == 2 ? 'selected' : '' ?>>Motor</option>
+                            <option value="1" <?= isset($vehicle_id) && $vehicle_id == 1 ? 'selected' : '' ?>>Auto
+                            </option>
+                            <option value="2" <?= isset($vehicle_id) && $vehicle_id == 2 ? 'selected' : '' ?>>Motor
+                            </option>
                         </select>
                     </div>
                     <p class="help is-danger"><?= $errors['vehicle_id'] ?? '' ?></p>
@@ -229,21 +234,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
 
-
-
-<!--            <div class="field">-->
-<!--                <label class="label" for="date_of">Op welke datum?</label>-->
-<!--                <div class="control">-->
-<!--                    <input class="input" type="datetime-local" name="date_of" id="date_of" value="--><?php //= htmlentities($date_of) ?><!--">-->
-<!--                </div>-->
-<!--                <p class="help is-danger">--><?php //= $errors['date_of'] ?? '' ?><!--</p>-->
-<!--            </div>-->
+            <!--            <div class="field">-->
+            <!--                <label class="label" for="date_of">Op welke datum?</label>-->
+            <!--                <div class="control">-->
+            <!--                    <input class="input" type="datetime-local" name="date_of" id="date_of" value="-->
+            <?php //= htmlentities($date_of) ?><!--">-->
+            <!--                </div>-->
+            <!--                <p class="help is-danger">--><?php //= $errors['date_of'] ?? '' ?><!--</p>-->
+            <!--            </div>-->
 
 
             <div class="field">
                 <label class="label" for="name">Naam</label>
                 <div class="control">
-                    <input class="input" type="text" name="name" id="name" value="<?= htmlentities($name) ?>" placeholder="Uw naam">
+                    <input class="input" type="text" name="name" id="name" value="<?= htmlentities($name) ?>"
+                           placeholder="Uw naam">
                 </div>
                 <p class="help is-danger"><?= $errors['name'] ?? '' ?></p>
             </div>
@@ -251,7 +256,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="field">
                 <label class="label" for="email">E-mail</label>
                 <div class="control">
-                    <input class="input" type="email" name="email" id="email" value="<?= htmlentities($email) ?>" placeholder="Uw e-mail">
+                    <input class="input" type="email" name="email" id="email" value="<?= htmlentities($email) ?>"
+                           placeholder="Uw e-mail">
                 </div>
                 <p class="help is-danger"><?= $errors['email'] ?? '' ?></p>
             </div>
@@ -259,7 +265,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="field">
                 <label class="label" for="telephone">Telefoonnummer</label>
                 <div class="control">
-                    <input class="input" type="tel" name="telephone" id="telephone" value="<?= htmlentities($telephone) ?>" placeholder="Uw telefoonnummer">
+                    <input class="input" type="tel" name="telephone" id="telephone"
+                           value="<?= htmlentities($telephone) ?>" placeholder="Uw telefoonnummer">
                 </div>
                 <p class="help is-danger"><?= $errors['telephone'] ?? '' ?></p>
             </div>
@@ -275,24 +282,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--<footer>-->
 
 
-
-
 <footer style="background-color: #f4f4f4; padding: 20px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
-<!--      <h1> <strong>contact</strong>Contact</h1>-->
+        <!--      <h1> <strong>contact</strong>Contact</h1>-->
         <div style="flex: 1; min-width: 250px;">
             <h2 class="has-text-black is-size-5	">Contact</h2>
             <br>
             <p class=" has-text-grey-darker	">R.F. de Wit Auto's<br>Buitenweg 12<br>2931AC Krimpen aan de Lek</p>
-            <p><img src="https://www.abk-kunststoffen.nl/uploads/imagemanager/rdw_erkend_breed.jpg" alt="RDW Erkend" style="height: 40px; margin-top: 10px;"></p>
+            <p><img src="https://www.abk-kunststoffen.nl/uploads/imagemanager/rdw_erkend_breed.jpg" alt="RDW Erkend"
+                    style="height: 40px; margin-top: 10px;"></p>
 
         </div>
 
         <div style="flex: 1; min-width: 250px;">
             <br>
             <br>
-            <p  class=" has-text-grey-darker">M: 0642128724</p>
-            <p  class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a></p>
+            <p class=" has-text-grey-darker">M: 0642128724</p>
+            <p class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a>
+            </p>
         </div>
 
         <div style="flex: 1; min-width: 250px;">
@@ -314,7 +321,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>
                 <br>
                 <a href="https://www.facebook.com/rfdewitautos/" style="text-decoration: none;">
-                    <img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" alt="Facebook" style="height: 30px;">
+                    <img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" alt="Facebook"
+                         style="height: 30px;">
                 </a>
         </div>
     </div>
