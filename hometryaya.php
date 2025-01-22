@@ -102,13 +102,13 @@
                     <a class="navbar-item" href="#">
                         Auto kopen
                     </a>
-                    <a class="navbar-item" href="#">
-                        Contact
-                    </a>
+<!--                    <a class="navbar-item" href="#">-->
+<!--                        Contact-->
+<!--                    </a>-->
                     <hr class="navbar-divider">
-                    <a class="navbar-item" href="#">
-                        Meld een probleem
-                    </a>
+<!--                    <a class="navbar-item" href="#">-->
+<!--                        Meld een probleem-->
+<!--                    </a>-->
                 </div>
             </div>
 

@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
+    <p class="px-5 pt-5"> RF. De Wit Auto's © </p>
 </section>
-<p class="px-5 pb-4"> R.F. De Wit Auto's © </p>
 </body>
 </html>

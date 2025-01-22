@@ -89,8 +89,8 @@ mysqli_close($db);
             <li><?= htmlspecialchars($res['telephone']) ?></li>
         </ul>
         <a class="button" href="index.php">Terug Naar De Afspraken</a>
+        <p class="px-3 pt-4"> R.F. De Wit Auto's © </p>
     </section>
-    <p class="px-3 pt-4"> R.F. De Wit Auto's © </p>
 </main>
 </body>
 </html>

@@ -108,9 +108,8 @@ if (isset($_POST['confirm_delete'])) {
             </form>
         </div>
     </div>
+    <p class="pl-6 pt-4"> R.F. De Wit Auto's © </p>
 </section>
-
-<p class="px-5 pb-4"> R.F. De Wit Auto's © </p>
 
 </body>
 </html>
