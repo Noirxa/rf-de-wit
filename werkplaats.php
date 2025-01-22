@@ -152,7 +152,7 @@
             <a class="navbar-item" href="werkplaats.php">
                 Werkplaats
             </a>
-            <a class="navbar-item" href="create.php">
+            <a class="navbar-item" href="select-date.php.php">
                 Reserveren
             </a>
             <a class="navbar-item" href="contact.php">
