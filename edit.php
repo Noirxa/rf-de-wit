@@ -120,79 +120,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="index.php">
-            <figure class="image is-150x150px">
-                <img src="https://rfdewitautos.nl/wp-content/uploads/2018/11/RF-de-wit-autos-logo.png" alt="logo"/>
-            </figure>
-        </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item">
-                Home
-            </a>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    Ocassions
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        Auto leasen
-                    </a>
-                    <a class="navbar-item">
-                        Auto kopen
-                    </a>
-                    <a class="navbar-item">
-                        Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Meld een probleem
-                    </a>
-                </div>
-            </div>
-
-            <a class="navbar-item">
-                Werkplaats
-            </a>
-            <a class="navbar-item">
-                Reserveren
-            </a>
-            <a class="navbar-item">
-                Contact
-            </a>
-
+<section class="head py-5 px-5 has-background-white">
+    <div class="columns is-vcentered">
+        <div class="column">
+            <h1 class="title is-1 has-text-black has-text-weight-bold"> Verander Uw Reservering </h1>
+            <p class="subtitle has-text-black mb-0 pt-4 pb-5"> Bijwerken van Details </p>
         </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>+31 6 421 28724</strong>
-                    </a>
-
-                </div>
+        <div class="column is-narrow">
+            <div class="image is-128x128">
+                <img src="https://cdn.discordapp.com/attachments/890599228437594175/1331584701969727548/download.png?ex=67922664&is=6790d4e4&hm=90ac17f69c0b5db2a566134126b28c22bd4ae19d0cacbf3342e2faa57f2a5791&" alt="RFDW Logo">
             </div>
         </div>
     </div>
-
-</nav>
-
+</section>
 
 <section class="section">
     <div class="container">
-        <h1 class="title">Verander u reservering</h1>
         <form method="post" action="">
             <div class="field">
                 <label class="label" for="type_appointments_id">Wat wilt u reserveren?</label>
@@ -287,52 +230,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </section>
-<footer style="background-color: #f4f4f4; padding: 20px;">
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
-        <!--      <h1> <strong>contact</strong>Contact</h1>-->
-        <div style="flex: 1; min-width: 250px;">
-            <h2 class="has-text-black is-size-5	">Contact</h2>
-            <br>
-            <p class=" has-text-grey-darker	">R.F. de Wit Auto's<br>Buitenweg 12<br>2931AC Krimpen aan de Lek</p>
-            <p><img src="https://www.abk-kunststoffen.nl/uploads/imagemanager/rdw_erkend_breed.jpg" alt="RDW Erkend"
-                    style="height: 40px; margin-top: 10px;"></p>
-
-        </div>
-
-        <div style="flex: 1; min-width: 250px;">
-            <br>
-            <br>
-            <p class=" has-text-grey-darker">M: 0642128724</p>
-            <p class=" has-text-grey-darker">E: <a href="mailto:RFdeWitautos@outlook.com">RFdeWitautos@outlook.com</a>
-            </p>
-        </div>
-
-
-        <div style="flex: 1; min-width: 250px;">
-            <h2 class="has-text-black is-size-5	">Openingstijden</h2>
-            <br>
-            <ul style="list-style: none; padding: 0;" class=" has-text-grey-darker">
-                <li>Maandag: 8:30 - 17:30</li>
-                <li>Dinsdag: 8:30 - 17:30</li>
-                <li>Woensdag: 8:30 - 17:30</li>
-                <li>Donderdag: 8:30 - 17:30</li>
-                <li>Vrijdag: 8:30 - 17:30</li>
-                <li>Zaterdag: 10:00 - 15:00</li>
-                <li>Zondag: Gesloten</li>
-            </ul>
-        </div>
-
-        <div style="flex: 1; min-width: 250px;">
-            <h2 class="has-text-black is-size-5	">Onze socials</h2>
-            <p>
-                <br>
-                <a href="https://www.facebook.com/rfdewitautos/" style="text-decoration: none;">
-                    <img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" alt="Facebook"
-                         style="height: 30px;">
-                </a>
-        </div>
-    </div>
-</footer>
-
+<p class="px-5 pb-4"> R.F. De Wit Auto's © </p>
 </body>
 </html>

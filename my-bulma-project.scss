@@ -3,25 +3,74 @@ $black: #070707e6;
 $grey: #808080;
 $white: #FFFFFF;
 $green: #007400;
+$grey2: #79878e;
 
-//Use SASS for All Pages
+//Path to Bulma's sass folder
 @use "bulma/sass" with (
-$family-primary: 'Mulish, sans-serif',
-$background: $black,
-$text: $white,
-$text-weak: $grey,
-
-//Use SASS for Buttons
-$button-static-color: $green,
-$button-active-color: $white,
-$button-text-color: $white,
-$button-text-hover-color: $green,
-
-//Use SASS for Tables
-$table-color: $grey,
-$table-cell-border-color: $white
+  $family-primary: 'Mulish, sans-serif',
+  $background: $black,
+  $text: $white,
+  $text-weak: $grey,
+  $black: $black,
+  $link: $green
 );
 
 //Import Font as Intended
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+
+//Use SASS for All Pages
+//@use "bulma/sass/utilities" with (
+//$family-primary: 'Mulish, sans-serif',
+//$background: $black,
+//$text: $white,
+//$text-weak: $grey,
+//$black: $black
+//);
+//
+////Use SASS for Buttons
+//@use "bulma/sass/elements/button" with (
+//$button-static-background-color: $green,
+//$button-active-color: $white,
+//$button-static-color: $white,
+//$button-text-hover-color: $green
+//);
+//
+//
+////Use SASS for Tables
+//@use "bulma/sass/elements/table" with (
+//$table-color: $grey,
+//$table-cell-border-color: $white
+//);
+//
+////.custom-button {
+//// @extend .button;
+////  background-color: #007400 !important;
+////  color: #FFFFFF !important;
+////
+////
+////  &:hover {
+////    background-color: #FFFFFF !important;
+////    color: #007400 !important;
+////  }
+////}
+//
+
+
+//// Set your brand colors
+//$purple: #8a4d76;
+//$pink: #fa7c91;
+//$brown: #757763;
+//$beige-light: #d0d1cd;
+//$beige-lighter: #eff0eb;
+//
+//// Path to Bulma's sass folder
+//@use "bulma/sass" with (
+//  $family-primary: '"Nunito", sans-serif',
+//  $grey-dark: $brown,
+//  $grey-light: $beige-light,
+//  $primary: $purple,
+//  $link: $pink,
+//  $control-border-width: 2px,
+//  $input-shadow: none
+//);

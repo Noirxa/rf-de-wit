@@ -62,15 +62,22 @@ mysqli_close($db);
 </head>
 <body>
 
-<header class="hero is-info">
-    <div class="hero-body">
-        <p class="title">Details</p>
-        <p class="subtitle"><?= $res['name'] ?> </p>
+<section class="head py-5 px-5 has-background-white">
+    <div class="columns is-vcentered">
+        <div class="column">
+            <h1 class="title is-1 has-text-black has-text-weight-bold"> Details </h1>
+            <p class="subtitle has-text-black mb-0 pt-4 pb-5"> Alle Informatie Voor Uw Gekozen Afspraak </p>
+        </div>
+        <div class="column is-narrow">
+            <div class="image is-128x128">
+                <img src="https://cdn.discordapp.com/attachments/890599228437594175/1331584701969727548/download.png?ex=67922664&is=6790d4e4&hm=90ac17f69c0b5db2a566134126b28c22bd4ae19d0cacbf3342e2faa57f2a5791&" alt="RFDW Logo">
+            </div>
+        </div>
     </div>
-</header>
+</section>
 
 <main class="container">
-    <section class="section content">
+    <section class="section content pb-0">
         <ul>
             
             <li><?= htmlspecialchars($res['type_appointments_type']) ?></li>
@@ -82,8 +89,9 @@ mysqli_close($db);
             <li><?= htmlspecialchars($res['email']) ?></li>
             <li><?= htmlspecialchars($res['telephone']) ?></li>
         </ul>
-        <a class="button" href="index.php">Go back to the list</a>
+        <a class="button" href="index.php">Terug Naar De Afspraken</a>
     </section>
+    <p class="px-3 pt-4"> R.F. De Wit Auto's © </p>
 </main>
 </body>
 </html>

@@ -105,8 +105,6 @@ mysqli_free_result($result);
 
 mysqli_close($db);
 ?>
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -115,24 +113,33 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RF de Wit Auto's Index</title>
-    <link rel="stylesheet" href="my-bulma-project.css">
+    <link rel="stylesheet" type="text/css" href="my-bulma-project.css">
 </head>
 <body>
 
 
-<section class="head mx-5">
-    <h1 class="title is-1 has-text-white has-text-weight-bold"> Reservations </h1>
-    <p> Welcome Back, <?php echo $full_name; ?> ! </p>
+<section class="head py-5 px-5 has-background-white">
+    <div class="columns is-vcentered">
+        <div class="column">
+            <h1 class="title is-1 has-text-black has-text-weight-bold"> Afspraken </h1>
+            <p class="subtitle has-text-black mb-0 pt-4 pb-5"> Welkom Terug, <?php echo $full_name; ?> ! </p>
 
-    <a href="create.php" class="button"> Create An Appointment </a>
-    <a href="register.php" class="button"> Register New Mechanic </a>
-    <a href=" " class="button"> Go To Contact Questions </a>
+            <a href="select-date.php" class="button is-link"> Afspraak Aanmaken </a>
+            <a href="register.php" class="button is-link"> Nieuwe Admin Toevoegen </a>
+            <a href="contact.php" class="button is-link"> Contact Vragen Inzien </a>
+        </div>
+        <div class="column is-narrow">
+            <div class="image is-128x128">
+                <img src="https://cdn.discordapp.com/attachments/890599228437594175/1331584701969727548/download.png?ex=67922664&is=6790d4e4&hm=90ac17f69c0b5db2a566134126b28c22bd4ae19d0cacbf3342e2faa57f2a5791&" alt="RFDW Logo">
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="section">
-    <form method="get" class="mb-5">
+    <form method="get">
         <div class="field">
-            <label class="label" for="date">Filter by Date:</label>
+            <label class="label" for="date">Filter op Datum:</label>
             <div class="control">
                 <input class="input" type="date" name="date" id="date" value="<?= htmlspecialchars($filter_date) ?>">
             </div>
@@ -141,19 +148,19 @@ mysqli_close($db);
     </form>
 </section>
 
-<section class="section">
-    <table class="table is-bordered mx-auto">
+<section class="section py-2 px-6">
+    <table class="table is-bordered">
         <thead>
         <tr>
-            <th> Case ID</th>
-            <th> Type of Appointment</th>
-            <th> Vehicle in Question</th>
-            <th> Date of Appointment</th>
-            <th> Start Time</th>
-            <th> End Time</th>
-            <th> Name Client</th>
+            <th> Zaak ID</th>
+            <th> Type Afspraak </th>
+            <th> Soort Voertuig </th>
+            <th> Datum van Afspraak</th>
+            <th> Start Tijd </th>
+            <th> Eind Tijd </th>
+            <th> Client Naam </th>
             <th> Email</th>
-            <th> Phone Number</th>
+            <th> Telefoon Nummer </th>
         </thead>
         <tfoot>
         <tr>
@@ -173,8 +180,8 @@ mysqli_close($db);
                 <th> <?php echo $res ['telephone'] ?> </th>
 
                 <td> <a href="detailsaya.php?id=<?php echo $res['id']; ?>"> Details </a></td>
-                <td><a href="edit.php?id=<?php echo $res['id']; ?>"> Edit </a></td>
-                <td><a href="delete.php?id=<?php echo $res['id']; ?>"> Delete </a></td>
+                <td><a href="edit.php?id=<?php echo $res['id']; ?>"> Bewerken </a></td>
+                <td><a href="delete.php?id=<?php echo $res['id']; ?>"> Verwijderen </a></td>
 
 
             </tr>
@@ -184,9 +191,9 @@ mysqli_close($db);
 </section>
 
 <section class="section">
-<a href="logout.php" class="button"> Log Out </a>
+<a href="logout.php" class="button"> Log Uit </a>
     <br>
-    <p> R.F. De Wit Auto's © </p>
+    <p class="pt-4"> R.F. De Wit Auto's © </p>
 </section>
 
 </body>
