@@ -8,4 +8,3 @@
     "start": "npm run build-bulma -- --watch"
   }
 }
-
