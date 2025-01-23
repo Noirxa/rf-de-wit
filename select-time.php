@@ -106,7 +106,7 @@ if (!empty($_GET['date_of'])) {
 <head>
     <title>Nieuwe reservering - tijd</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="my-bulma-project.css">
 </head>
 <body>
 
@@ -217,7 +217,28 @@ if (!empty($_GET['date_of'])) {
                 </div>
             </div>
 
-
+            <div class="field l">
+                <div class="field ">
+                    <label for="time" class="label">Tijd</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="time" name="time">
+                                    <option value="" >Kies een tijd</option>
+                                    <?php foreach ($availableTimes as $availableTime) { ?>
+                                        <option value="<?= $availableTime ?>" <?= $start_time == $availableTime ? 'selected' : '' ?>><?= $availableTime ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <p class="help is-danger">
+                                <?= $errors['time'] ?? '' ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="field is-horizontal">
                 <div class="field-label">
                     <!-- Left empty for spacing -->
@@ -265,31 +286,10 @@ if (!empty($_GET['date_of'])) {
                 <form action="" method="POST">
 
 
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label for="time" class="label">Tijd</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field is-narrow">
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select id="time" name="time">
-                                            <option value="" >Kies een tijd</option>
-                                            <?php foreach ($availableTimes as $availableTime) { ?>
-                                                <option value="<?= $availableTime ?>" <?= $start_time == $availableTime ? 'selected' : '' ?>><?= $availableTime ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <p class="help is-danger">
-                                        <?= $errors['time'] ?? '' ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <input type="hidden" name="date_of" value="<?= $date_of ?>"/>
-
+                    <br>
                     <div class="field-body">
                 <div class="field">
                     <div class="control">
